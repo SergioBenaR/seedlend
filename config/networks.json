@@ -1,0 +1,20 @@
+{
+  "verifiedAt": "2026-08-26",
+  "creditcoinAttestcoinTestnet": {
+    "name": "Creditcoin CC3 Testnet",
+    "chainId": 102031,
+    "nativeCurrency": "tCTC",
+    "rpcUrl": "https://rpc.cc3-testnet.creditcoin.network",
+    "explorerUrl": "https://creditcoin-testnet.blockscout.com/",
+    "dashboardUrl": "https://dashboard.cc3-testnet.creditcoin.network/",
+    "proofBuilderUrl": "https://prover.cc3-testnet.creditcoin.network",
+    "chainInfoPrecompile": "0x0000000000000000000000000000000000000fd3",
+    "blockProverPrecompile": "0x0000000000000000000000000000000000000FD2"
+  },
+  "sepolia": {
+    "name": "Ethereum Sepolia",
+    "chainId": 11155111,
+    "attestcoinSourceChainKey": 1,
+    "rpcUrl": null
+  }
+}

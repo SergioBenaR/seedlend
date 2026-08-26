@@ -1,0 +1,22 @@
+{
+  "name": "@seedlend/worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Attestcoin proof workflow for SeedLend",
+  "scripts": {
+    "test": "node --test",
+    "typecheck": "tsc --noEmit",
+    "verify:networks": "node --import tsx src/verify-networks.ts"
+  },
+  "dependencies": {
+    "@gluwa/usc-sdk": "0.18.0",
+    "dotenv": "17.4.2",
+    "ethers": "6.17.0"
+  },
+  "devDependencies": {
+    "@types/node": "26.1.0",
+    "tsx": "4.22.4",
+    "typescript": "6.0.2"
+  }
+}
