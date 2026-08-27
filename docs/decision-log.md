@@ -14,12 +14,11 @@
 - `termsHash` commits `loanId` and all material loan terms so an otherwise identical position cannot be silently reused for a different loan.
 - `SeedLendVault` rejects fee-on-transfer assets because the verified position amount must equal the quantity actually received.
 - The production contracts expose no manual activation or release shortcut; test-only hooks exist only in the Foundry harness.
+- The verified source evidence is stored as Attestcoin's replay-protected `queryId`; the Sepolia transaction hash remains worker/UI metadata because it is not directly authenticated as a field by the destination contract.
+- T05 follows the official one-shot proof flow using `@gluwa/usc-sdk@0.18.0` and `@gluwa/usc-contracts@0.1.2`.
 
 ## Open and intentionally not assumed
 
-- GitHub owner and remote repository visibility;
-- verified Creditcoin environment values and access to testnet CTC;
-- exact Attestcoin SDK types and worker implementation;
 - demo asset and repayment token;
 - loan amount, rate, number of installments and timing;
 - final submission sector/track;

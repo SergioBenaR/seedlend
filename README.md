@@ -13,10 +13,10 @@ The prototype does not use real money, does not promise returns and does not cla
 ## Implementation status
 
 - T01 repository scaffold: complete.
-- T02 public environment and tool verification: complete; live transactions await owner-controlled testnet access.
+- T02 public environment and tool verification: complete; the owner-controlled Creditcoin wallet is funded with testnet CTC.
 - T03 Creditcoin loan model: implemented and covered by seven Foundry tests.
 - T04 Sepolia position vault: implemented and covered by seven Foundry tests.
-- T05 Attestcoin proof verification: not yet implemented.
+- T05 Attestcoin proof verification: implemented locally in the Creditcoin contract and one-shot worker; live end-to-end verification awaits testnet deployment.
 
 ## MVP boundary
 
@@ -72,7 +72,7 @@ Inspect local prerequisites:
 pnpm preflight
 ```
 
-Once Foundry is installed, each contract package can be checked independently:
+Each contract package can be checked independently:
 
 ```bash
 cd contracts/creditcoin && forge test

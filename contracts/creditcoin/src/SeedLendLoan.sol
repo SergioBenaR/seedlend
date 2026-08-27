@@ -1,10 +1,13 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.30;
 
+import { EvmV1Decoder } from "@gluwa/usc-contracts/contracts/decoding/EvmV1Decoder.sol";
+import { AttestcoinVerifier, INativeQueryVerifier } from "./AttestcoinVerifier.sol";
+
 /// @title SeedLendLoan
 /// @notice Stores the canonical lifecycle of SeedLend loans on Creditcoin.
-/// @dev Attestcoin proof decoding and public repayment transfers are added in later tasks.
-contract SeedLendLoan {
+/// @dev Position activation is proof-gated; public repayment transfers are added later.
+contract SeedLendLoan is AttestcoinVerifier {
     enum LoanStatus {
         None,
         PendingPosition,
@@ -34,7 +37,7 @@ contract SeedLendLoan {
         address vault;
         address asset;
         bytes32 termsHash;
-        bytes32 sourceTxHash;
+        bytes32 sourceQueryId;
         uint256 positionAmount;
         LoanStatus status;
     }
@@ -52,10 +55,12 @@ contract SeedLendLoan {
     error InvalidInstallment();
     error InvalidInstallmentCount();
     error InvalidSourceChain();
+    error UnexpectedSourceChain(uint64 expected, uint64 actual);
+    error UnexpectedSourceChainKey(uint64 expected, uint64 actual);
     error LoanNotFound(uint256 loanId);
     error InvalidLoanStatus(uint256 loanId, LoanStatus expected, LoanStatus actual);
     error InvalidPositionAmount();
-    error InvalidSourceTransaction();
+    error InvalidPositionProof();
     error InvalidPaymentAmount();
     error PaymentExceedsBalance(uint256 remaining, uint256 attempted);
 
@@ -67,7 +72,7 @@ contract SeedLendLoan {
         bytes32 termsHash
     );
     event LoanActivated(
-        uint256 indexed loanId, bytes32 indexed sourceTxHash, uint256 positionAmount
+        uint256 indexed loanId, bytes32 indexed sourceQueryId, uint256 positionAmount
     );
     event PaymentRecorded(
         uint256 indexed loanId, address indexed payer, uint256 amount, uint256 paidAmount
@@ -81,7 +86,12 @@ contract SeedLendLoan {
     );
 
     address public immutable originator;
+    uint64 public immutable sourceChainId;
+    uint64 public immutable sourceChainKey;
     uint256 public loanCount;
+
+    bytes32 public constant POSITION_LOCKED_EVENT_SIGNATURE =
+        keccak256("PositionLocked(uint256,address,address,uint256,uint256,bytes32)");
 
     mapping(uint256 loanId => Loan loan) private loans;
     mapping(uint256 loanId => Payment[] payments) private loanPayments;
@@ -91,9 +101,12 @@ contract SeedLendLoan {
         _;
     }
 
-    constructor(address originator_) {
+    constructor(address originator_, uint64 sourceChainId_, uint64 sourceChainKey_) {
         if (originator_ == address(0)) revert ZeroAddress();
+        if (sourceChainId_ == 0 || sourceChainKey_ == 0) revert InvalidSourceChain();
         originator = originator_;
+        sourceChainId = sourceChainId_;
+        sourceChainKey = sourceChainKey_;
     }
 
     function createLoan(LoanTermsInput calldata terms)
@@ -117,7 +130,7 @@ contract SeedLendLoan {
             vault: terms.vault,
             asset: terms.asset,
             termsHash: termsHash,
-            sourceTxHash: bytes32(0),
+            sourceQueryId: bytes32(0),
             positionAmount: 0,
             status: LoanStatus.PendingPosition
         });
@@ -166,16 +179,87 @@ contract SeedLendLoan {
         return loan.totalDue - loan.paidAmount;
     }
 
-    function _activateLoan(uint256 loanId, bytes32 sourceTxHash, uint256 positionAmount) internal {
+    /// @notice Activates a pending loan only after Attestcoin proves its exact vault position.
+    function activateFromPositionProof(
+        uint256 loanId,
+        uint64 chainKey,
+        uint64 blockHeight,
+        bytes calldata encodedTransaction,
+        bytes32 merkleRoot,
+        INativeQueryVerifier.MerkleProofEntry[] calldata siblings,
+        bytes32 lowerEndpointDigest,
+        bytes32[] calldata continuityRoots
+    ) external returns (bool) {
+        if (chainKey != sourceChainKey) {
+            revert UnexpectedSourceChainKey(sourceChainKey, chainKey);
+        }
+
+        bytes32 queryId = _verifyAndConsume(
+            chainKey,
+            blockHeight,
+            encodedTransaction,
+            merkleRoot,
+            siblings,
+            lowerEndpointDigest,
+            continuityRoots
+        );
+        uint256 positionAmount = _decodeAndValidatePosition(loanId, encodedTransaction);
+        _activateLoan(loanId, queryId, positionAmount);
+
+        return true;
+    }
+
+    function _activateLoan(uint256 loanId, bytes32 sourceQueryId, uint256 positionAmount)
+        internal
+    {
         Loan storage loan = _requireStatus(loanId, LoanStatus.PendingPosition);
-        if (sourceTxHash == bytes32(0)) revert InvalidSourceTransaction();
+        if (sourceQueryId == bytes32(0)) revert InvalidPositionProof();
         if (positionAmount == 0) revert InvalidPositionAmount();
 
-        loan.sourceTxHash = sourceTxHash;
+        loan.sourceQueryId = sourceQueryId;
         loan.positionAmount = positionAmount;
         loan.status = LoanStatus.Active;
 
-        emit LoanActivated(loanId, sourceTxHash, positionAmount);
+        emit LoanActivated(loanId, sourceQueryId, positionAmount);
+    }
+
+    function _decodeAndValidatePosition(uint256 loanId, bytes calldata encodedTransaction)
+        private
+        view
+        returns (uint256 positionAmount)
+    {
+        Loan storage loan = _requireStatus(loanId, LoanStatus.PendingPosition);
+        uint8 transactionType = EvmV1Decoder.getTransactionType(encodedTransaction);
+        if (!EvmV1Decoder.isValidTransactionType(transactionType)) {
+            revert InvalidPositionProof();
+        }
+
+        EvmV1Decoder.ReceiptFields memory receipt =
+            EvmV1Decoder.decodeReceiptFields(encodedTransaction);
+        if (receipt.receiptStatus != 1) revert InvalidPositionProof();
+
+        EvmV1Decoder.LogEntry[] memory logs =
+            EvmV1Decoder.getLogsByEventSignature(receipt, POSITION_LOCKED_EVENT_SIGNATURE);
+
+        for (uint256 i; i < logs.length; ++i) {
+            EvmV1Decoder.LogEntry memory positionLog = logs[i];
+            if (positionLog.address_ != loan.vault || positionLog.topics.length != 4) continue;
+            if (uint256(positionLog.topics[1]) != loanId) continue;
+
+            address borrower = address(uint160(uint256(positionLog.topics[2])));
+            address asset = address(uint160(uint256(positionLog.topics[3])));
+            (uint256 principal, uint256 provenPositionAmount, bytes32 termsHash) =
+                abi.decode(positionLog.data, (uint256, uint256, bytes32));
+
+            if (
+                borrower == loan.borrower && asset == loan.asset && principal == loan.principal
+                    && provenPositionAmount > 0 && termsHash == loan.termsHash
+            ) {
+                return provenPositionAmount;
+            }
+        }
+
+        revert InvalidPositionProof();
     }
 
     function _recordPayment(uint256 loanId, address payer, uint256 amount) internal {
@@ -200,7 +284,7 @@ contract SeedLendLoan {
         }
     }
 
-    function _validateTerms(LoanTermsInput calldata terms) private pure {
+    function _validateTerms(LoanTermsInput calldata terms) private view {
         if (terms.borrower == address(0) || terms.vault == address(0) || terms.asset == address(0))
         {
             revert ZeroAddress();
@@ -212,6 +296,9 @@ contract SeedLendLoan {
         }
         if (terms.installmentCount == 0) revert InvalidInstallmentCount();
         if (terms.sourceChainId == 0) revert InvalidSourceChain();
+        if (terms.sourceChainId != sourceChainId) {
+            revert UnexpectedSourceChain(sourceChainId, terms.sourceChainId);
+        }
     }
 
     function _requireLoan(uint256 loanId) private view {

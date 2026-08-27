@@ -10,12 +10,12 @@ interface Vm {
 }
 
 contract SeedLendLoanHarness is SeedLendLoan {
-    constructor(address originator_) SeedLendLoan(originator_) { }
+    constructor(address originator_) SeedLendLoan(originator_, 11155111, 1) { }
 
-    function activateForTest(uint256 loanId, bytes32 sourceTxHash, uint256 positionAmount)
+    function activateForTest(uint256 loanId, bytes32 sourceQueryId, uint256 positionAmount)
         external
     {
-        _activateLoan(loanId, sourceTxHash, positionAmount);
+        _activateLoan(loanId, sourceQueryId, positionAmount);
     }
 
     function recordPaymentForTest(uint256 loanId, address payer, uint256 amount) external {
@@ -79,7 +79,7 @@ contract SeedLendLoanTest {
         SeedLendLoan.Loan memory loan = loanContract.getLoan(loanId);
 
         require(loan.status == SeedLendLoan.LoanStatus.Active, "loan not active");
-        require(loan.sourceTxHash == SOURCE_TX_HASH, "transaction mismatch");
+        require(loan.sourceQueryId == SOURCE_TX_HASH, "query mismatch");
         require(loan.positionAmount == 100e18, "position mismatch");
 
         vm.expectRevert(

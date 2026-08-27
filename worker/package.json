@@ -5,9 +5,10 @@
   "type": "module",
   "description": "Attestcoin proof workflow for SeedLend",
   "scripts": {
-    "test": "node --test",
+    "test": "node --import tsx --test test/*.test.ts",
     "typecheck": "tsc --noEmit",
-    "verify:networks": "node --import tsx src/verify-networks.ts"
+    "verify:networks": "node --import tsx src/verify-networks.ts",
+    "activate-position": "node --import tsx src/activate-position.ts"
   },
   "dependencies": {
     "@gluwa/usc-sdk": "0.18.0",

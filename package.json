@@ -9,8 +9,13 @@
   },
   "scripts": {
     "test": "node --test tests/*.test.mjs",
+    "test:worker": "pnpm --filter @seedlend/worker test",
+    "typecheck": "pnpm --filter @seedlend/worker typecheck",
     "preflight": "node scripts/preflight.mjs",
     "verify:networks": "pnpm --filter @seedlend/worker verify:networks",
-    "check": "pnpm test"
+    "check": "pnpm test && pnpm test:worker && pnpm typecheck"
+  },
+  "devDependencies": {
+    "@gluwa/usc-contracts": "0.1.2"
   }
 }

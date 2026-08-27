@@ -43,3 +43,15 @@ Consequent limitation: repository smoke tests can run now; Solidity compilation,
 - The TypeScript environment verifier compiles. Its live Node request times out in this managed workspace, while equivalent calls through `curl` succeed; this is recorded as an execution-environment limitation rather than a Creditcoin failure.
 
 The earlier Foundry limitation is resolved for this workspace. User-specific Sepolia RPC, testnet wallet and faucet funds remain unavailable.
+
+## 27 August 2026
+
+### T05 Attestcoin implementation
+
+- The official example repository now resolves to `gluwa/attestcoin-protocol-examples`; reviewed commit: `40541b1063d7795ac153a09d9d72f2b2feef10f6`.
+- The current official example uses `@gluwa/usc-sdk@0.18.0`, `@gluwa/usc-contracts@0.1.2`, the native verifier at `0x0000000000000000000000000000000000000FD2` and the `verifyAndEmit` proof flow.
+- `SeedLendLoan` now verifies and consumes Attestcoin proofs, decodes the proven EVM receipt and matches the exact `PositionLocked` event before activation.
+- The worker now validates the source event, waits for attestation, requests the official proof payload and submits it to Creditcoin.
+- The owner-controlled Creditcoin wallet has testnet CTC. Live end-to-end execution still requires Sepolia RPC access, Sepolia gas, deployments and a real source transaction.
+
+Source: <https://github.com/gluwa/attestcoin-protocol-examples>
