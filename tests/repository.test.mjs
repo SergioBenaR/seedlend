@@ -10,9 +10,12 @@ const requiredFiles = [
   "contracts/creditcoin/foundry.toml",
   "contracts/creditcoin/src/SeedLendLoan.sol",
   "contracts/sepolia/foundry.toml",
+  "contracts/sepolia/src/DemoPositionAsset.sol",
   "contracts/sepolia/src/SeedLendVault.sol",
   "docs/architecture.md",
   "docs/decision-log.md",
+  "docs/t06-deployment.md",
+  "scripts/deploy-testnets.mjs",
 ];
 
 test("the scaffold contains every required foundation file", async () => {
@@ -36,6 +39,7 @@ test("the environment template separates public defaults from private inputs", a
 
   for (const key of [
     "DEPLOYER_PRIVATE_KEY",
+    "DEPLOYER_ADDRESS",
     "SEPOLIA_RPC_URL",
     "SEEDLEND_LOAN_ADDRESS",
     "SEEDLEND_VAULT_ADDRESS",
@@ -44,6 +48,11 @@ test("the environment template separates public defaults from private inputs", a
   ]) {
     assert.equal(values[key], "", `${key} must remain unset`);
   }
+
+  assert.equal(
+    values.EVM_V1_DECODER_LIBRARY_ADDRESS,
+    "0x04B9ae8562D8Cc5bbbBbBB759080dDC30B56D18B",
+  );
 });
 
 test("real environment files are ignored", async () => {

@@ -8,9 +8,9 @@ importers:
 
   .:
     devDependencies:
-      '@gluwa/usc-contracts':
-        specifier: 0.1.2
-        version: 0.1.2
+      '@gluwa/asc-contracts':
+        specifier: 0.2.1
+        version: 0.2.1
 
   app: {}
 
@@ -197,8 +197,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@gluwa/usc-contracts@0.1.2':
-    resolution: {integrity: sha512-6GbBApjqhb6uWGzo6mLOZxH2RNq8iCOoRuYXn97gIQIaIHMk/pjQdDk2vJolX11TnhQbcrtoE/em/RDQyrJJdQ==}
+  '@gluwa/asc-contracts@0.2.1':
+    resolution: {integrity: sha512-3/zVx8ElFewTB0Xy06xJ/uPYfvFI1usOe/ilxoM5SNT9Cf47ML/YW41Pq00NttxuOPLkh8HnRlPgD1n66ritLA==}
 
   '@gluwa/usc-sdk@0.18.0':
     resolution: {integrity: sha512-iUEXPAp1gB/HDYkXad+StVJvs0Yz2ZIbzijc8SaBflGJ95hPnVahyY+tsP2PApswSQaX2uIBM7Cb0jpZ+KBzTQ==}
@@ -209,6 +209,9 @@ packages:
   '@noble/hashes@1.3.2':
     resolution: {integrity: sha512-MVC8EAQp7MvEcm30KWENFjgR+Mkmf+D189XJTkFIlwohU5hcBbn1ZkKq7KVTi2Hme3PMGF390DaL52beVrIihQ==}
     engines: {node: '>= 16'}
+
+  '@openzeppelin/contracts@5.1.0':
+    resolution: {integrity: sha512-p1ULhl7BXzjjbha5aqst+QMLY+4/LCWADXOCsmLHRM77AqiPjnd9vvUN9sosUfhL9JGKpZ0TjEGxgvnizmWGSA==}
 
   '@types/node@22.7.5':
     resolution: {integrity: sha512-jML7s2NAzMWc//QSJ1a3prpk78cOPchGvXJsC3C6R6PSMoooztvRVQEz89gmBTBY1SPMaqo5teB4uNHPdetShQ==}
@@ -467,7 +470,9 @@ snapshots:
   '@esbuild/win32-x64@0.28.2':
     optional: true
 
-  '@gluwa/usc-contracts@0.1.2': {}
+  '@gluwa/asc-contracts@0.2.1':
+    dependencies:
+      '@openzeppelin/contracts': 5.1.0
 
   '@gluwa/usc-sdk@0.18.0(debug@4.4.3)':
     dependencies:
@@ -486,6 +491,8 @@ snapshots:
       '@noble/hashes': 1.3.2
 
   '@noble/hashes@1.3.2': {}
+
+  '@openzeppelin/contracts@5.1.0': {}
 
   '@types/node@22.7.5':
     dependencies:

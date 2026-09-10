@@ -7,7 +7,7 @@ Reviewed on 27 August 2026:
 - official repository: <https://github.com/gluwa/attestcoin-protocol-examples>, commit `40541b1063d7795ac153a09d9d72f2b2feef10f6`;
 - official loan-flow contract and worker;
 - `@gluwa/usc-sdk@0.18.0`;
-- `@gluwa/usc-contracts@0.1.2`;
+- `@gluwa/usc-contracts@0.1.2` at the time T05 was implemented;
 - Creditcoin native verifier address: `0x0000000000000000000000000000000000000FD2`;
 - Sepolia Attestcoin key: `1`;
 - Sepolia EVM chain ID: `11155111`.
@@ -34,3 +34,5 @@ The match covers the configured vault address, `loanId`, borrower, asset, princi
 Local contract compilation, unit tests and worker typechecking are complete. A live proof cannot be claimed until the contracts are deployed and an actual `PositionLocked` transaction is executed on Sepolia.
 
 `EvmV1Decoder` contains public library functions, so its deployed address must be linked when deploying `SeedLendLoan`, as required by the official example.
+
+Deployment note: on 10 September 2026 the official repository had migrated the decoder package to `@gluwa/asc-contracts@0.2.1`. T06 updates SeedLend to that current package without changing the proof semantics implemented here.

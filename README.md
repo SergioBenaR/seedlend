@@ -17,6 +17,7 @@ The prototype does not use real money, does not promise returns and does not cla
 - T03 Creditcoin loan model: implemented and covered by seven Foundry tests.
 - T04 Sepolia position vault: implemented and covered by seven Foundry tests.
 - T05 Attestcoin proof verification: implemented locally in the Creditcoin contract and one-shot worker; live end-to-end verification awaits testnet deployment.
+- T06 deployment preparation: demo asset, safe deployment automation and local deployment validation complete; public-testnet deployment remains pending.
 
 ## MVP boundary
 
@@ -43,7 +44,7 @@ contracts/creditcoin/  SeedLendLoan and its tests
 contracts/sepolia/     SeedLendVault and its tests
 worker/                Attestcoin proof workflow
 app/                   Web interface
-scripts/               Local checks and future deployment scripts
+scripts/               Local checks and guarded deployment automation
 tests/                 Repository-level smoke tests
 docs/                  Architecture, decisions and verification log
 ```
@@ -88,6 +89,14 @@ pnpm verify:networks
 ```
 
 Copy `.env.example` to `.env` only when testnet configuration is available. Never commit private keys or secrets.
+
+Validate deployment preparation without sending transactions:
+
+```bash
+pnpm deploy:check
+```
+
+The guarded public-testnet procedure is documented in `docs/t06-deployment.md`.
 
 ## Working method
 

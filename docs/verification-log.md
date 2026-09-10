@@ -55,3 +55,15 @@ The earlier Foundry limitation is resolved for this workspace. User-specific Sep
 - The owner-controlled Creditcoin wallet has testnet CTC. Live end-to-end execution still requires Sepolia RPC access, Sepolia gas, deployments and a real source transaction.
 
 Source: <https://github.com/gluwa/attestcoin-protocol-examples>
+
+## 10 September 2026
+
+### T06 deployment preparation
+
+- Rechecked the official `gluwa/attestcoin-protocol-examples` repository at commit `6668487ad07fdf8119f54aab9db99b6c50155b5c`, dated 2 September 2026.
+- The current official loan example uses `@gluwa/asc-contracts@0.2.1`, Solidity `0.8.30`, EVM target `shanghai`, IR compilation and the pre-deployed `EvmV1Decoder` at `0x04B9ae8562D8Cc5bbbBbBB759080dDC30B56D18B`.
+- SeedLend's decoder dependency and Foundry configuration were aligned with that current example.
+- The deployment checker compiled both contract groups, and the full asset, vault and loan deployment sequence succeeded on a local Anvil chain.
+- No Sepolia or Creditcoin transaction was broadcast during T06.
+
+Source: <https://github.com/gluwa/attestcoin-protocol-examples>

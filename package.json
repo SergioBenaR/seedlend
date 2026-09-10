@@ -12,10 +12,12 @@
     "test:worker": "pnpm --filter @seedlend/worker test",
     "typecheck": "pnpm --filter @seedlend/worker typecheck",
     "preflight": "node scripts/preflight.mjs",
+    "deploy:check": "node scripts/deploy-testnets.mjs --check",
+    "deploy:testnets": "node scripts/deploy-testnets.mjs --broadcast",
     "verify:networks": "pnpm --filter @seedlend/worker verify:networks",
     "check": "pnpm test && pnpm test:worker && pnpm typecheck"
   },
   "devDependencies": {
-    "@gluwa/usc-contracts": "0.1.2"
+    "@gluwa/asc-contracts": "0.2.1"
   }
 }

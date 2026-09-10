@@ -15,11 +15,13 @@
 - `SeedLendVault` rejects fee-on-transfer assets because the verified position amount must equal the quantity actually received.
 - The production contracts expose no manual activation or release shortcut; test-only hooks exist only in the Foundry harness.
 - The verified source evidence is stored as Attestcoin's replay-protected `queryId`; the Sepolia transaction hash remains worker/UI metadata because it is not directly authenticated as a field by the destination contract.
-- T05 follows the official one-shot proof flow using `@gluwa/usc-sdk@0.18.0` and `@gluwa/usc-contracts@0.1.2`.
+- T05 follows the official one-shot proof flow using `@gluwa/usc-sdk@0.18.0`; T06 migrates the decoder dependency to the current `@gluwa/asc-contracts@0.2.1` package.
+- The hackathon demo asset is a fixed-supply, unbacked ERC20 used only on Sepolia and explicitly makes no legal RWA claim.
+- Deployment reuses Creditcoin's official pre-deployed `EvmV1Decoder` instead of spending another testnet transaction to deploy the same library.
 
 ## Open and intentionally not assumed
 
-- demo asset and repayment token;
+- repayment token;
 - loan amount, rate, number of installments and timing;
 - final submission sector/track;
 - production jurisdiction, custody, underwriting and compliance model;
