@@ -2,8 +2,9 @@
   "name": "@seedlend/app",
   "version": "0.1.0",
   "private": true,
-  "description": "SeedLend demonstration interface",
+  "description": "SeedLend public testnet demonstration interface",
   "scripts": {
+    "build": "node build-static.mjs",
     "test": "node --test"
   }
 }
