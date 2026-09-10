@@ -18,6 +18,8 @@ The prototype does not use real money, does not promise returns and does not cla
 - T04 Sepolia position vault: implemented and covered by seven Foundry tests.
 - T05 Attestcoin proof verification: implemented locally in the Creditcoin contract and one-shot worker; live end-to-end verification awaits testnet deployment.
 - T06 deployment preparation: demo asset, safe deployment automation and local deployment validation complete; public-testnet deployment remains pending.
+- T07–T10 native-tCTC repayment: implemented with immediate originator forwarding, on-chain
+  payment evidence, completion events and repayment protections; testnet deployment remains pending.
 
 ## MVP boundary
 

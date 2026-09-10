@@ -6,7 +6,7 @@ import { AttestcoinVerifier, INativeQueryVerifier } from "./AttestcoinVerifier.s
 
 /// @title SeedLendLoan
 /// @notice Stores the canonical lifecycle of SeedLend loans on Creditcoin.
-/// @dev Position activation is proof-gated; public repayment transfers are added later.
+/// @dev Position activation is proof-gated; repayments use Creditcoin's native testnet currency.
 contract SeedLendLoan is AttestcoinVerifier {
     enum LoanStatus {
         None,
@@ -63,6 +63,8 @@ contract SeedLendLoan is AttestcoinVerifier {
     error InvalidPositionProof();
     error InvalidPaymentAmount();
     error PaymentExceedsBalance(uint256 remaining, uint256 attempted);
+    error PaymentTransferFailed();
+    error ReentrantCall();
 
     event LoanCreated(
         uint256 indexed loanId,
@@ -90,6 +92,8 @@ contract SeedLendLoan is AttestcoinVerifier {
     uint64 public immutable sourceChainKey;
     uint256 public loanCount;
 
+    uint256 private repaymentLock = 1;
+
     bytes32 public constant POSITION_LOCKED_EVENT_SIGNATURE =
         keccak256("PositionLocked(uint256,address,address,uint256,uint256,bytes32)");
 
@@ -99,6 +103,13 @@ contract SeedLendLoan is AttestcoinVerifier {
     modifier onlyOriginator() {
         if (msg.sender != originator) revert NotOriginator();
         _;
+    }
+
+    modifier nonReentrant() {
+        if (repaymentLock != 1) revert ReentrantCall();
+        repaymentLock = 2;
+        _;
+        repaymentLock = 1;
     }
 
     constructor(address originator_, uint64 sourceChainId_, uint64 sourceChainKey_) {
@@ -177,6 +188,15 @@ contract SeedLendLoan is AttestcoinVerifier {
         _requireLoan(loanId);
         Loan storage loan = loans[loanId];
         return loan.totalDue - loan.paidAmount;
+    }
+
+    /// @notice Pays down an active loan with Creditcoin's native currency.
+    /// @dev Any account may pay; the payer is recorded and funds are forwarded to the originator.
+    function repay(uint256 loanId) external payable nonReentrant {
+        _recordPayment(loanId, msg.sender, msg.value);
+
+        (bool transferred,) = payable(originator).call{ value: msg.value }("");
+        if (!transferred) revert PaymentTransferFailed();
     }
 
     /// @notice Activates a pending loan only after Attestcoin proves its exact vault position.

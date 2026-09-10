@@ -67,3 +67,15 @@ Source: <https://github.com/gluwa/attestcoin-protocol-examples>
 - No Sepolia or Creditcoin transaction was broadcast during T06.
 
 Source: <https://github.com/gluwa/attestcoin-protocol-examples>
+
+### T07–T10 native-tCTC repayment
+
+- `repay(uint256 loanId) payable` records payer, amount and timestamp, then forwards the native
+  payment to the `originator`.
+- Inactive loans, zero payments, overpayments, failed forwarding and repayment reentry are rejected.
+- Reaching `totalDue` moves the loan to `Paid` and emits `LoanPaid` and `ReleaseEligible`.
+- The 100 tCTC principal, 108 tCTC total and 3 × 36 tCTC values are illustrative demo terms; no
+  payment calendar or fixed installment size is enforced on-chain.
+- Local validation passed: Creditcoin Foundry 20/20, Sepolia Foundry 13/13, repository and worker
+  Node tests 8/8, and worker TypeScript typecheck.
+- No testnet transaction was broadcast during T07–T10.

@@ -44,7 +44,6 @@ test("the environment template separates public defaults from private inputs", a
     "SEEDLEND_LOAN_ADDRESS",
     "SEEDLEND_VAULT_ADDRESS",
     "DEMO_ASSET_ADDRESS",
-    "DEMO_PAYMENT_TOKEN_ADDRESS",
   ]) {
     assert.equal(values[key], "", `${key} must remain unset`);
   }

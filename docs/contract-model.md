@@ -1,4 +1,4 @@
-# Contract model after T03–T05
+# Contract model after T03–T10
 
 ## `SeedLendLoan` — Creditcoin
 
@@ -10,12 +10,15 @@ Implemented responsibilities:
 - `termsHash` tied to `loanId` and every material loan term;
 - states `PendingPosition`, `Active` and `Paid`;
 - public Attestcoin proof entry point and internal activation hook;
-- internal payment recording, history, remaining balance and release-eligibility event;
-- rejection of invalid transitions, zero payments and overpayments.
+- public native-tCTC repayment through `repay(uint256 loanId) payable`;
+- immediate forwarding of each successful payment to the `originator`;
+- on-chain payer, amount and timestamp history plus remaining balance;
+- transition to `Paid` with `LoanPaid` and `ReleaseEligible` events at `totalDue`;
+- rejection of inactive-loan payments, zero payments, overpayments, failed forwarding and
+  repayment reentry.
 
 Not yet exposed:
 
-- token transfer inside public `repay`;
 - deployment configuration.
 
 Attestcoin activation now requires:
@@ -27,7 +30,11 @@ Attestcoin activation now requires:
 - a positive position amount;
 - an unused Attestcoin query identifier.
 
-The internal hooks are exposed only by a test harness. Production callers cannot activate loans or record payments through those hooks.
+The internal activation hook is exposed only by a test harness. Production callers cannot activate
+loans through that hook.
+
+The demo terms are 100 tCTC principal, 108 tCTC total due and three illustrative payments of
+36 tCTC. The contract does not impose payment dates or require each payment to equal 36 tCTC.
 
 ## `SeedLendVault` — Sepolia
 
@@ -58,9 +65,10 @@ Before calling the internal activation hook, the Creditcoin contract must prove 
 
 ## Current automated evidence
 
-- `SeedLendLoan`: 16/16 Foundry tests passing across lifecycle and Attestcoin suites.
-- `SeedLendVault`: 7/7 Foundry tests passing.
-- Worker ABI and proof mapping: 2/2 Node tests passing and TypeScript typecheck passing.
+- Creditcoin contracts: 20/20 Foundry tests passing across lifecycle, repayment and Attestcoin
+  suites.
+- Sepolia contracts: 13/13 Foundry tests passing across demo asset and vault suites.
+- Repository and worker: 8/8 Node tests passing and TypeScript typecheck passing.
 - Solidity compiler: `0.8.30`.
 - EVM target: `shanghai`.
 - Foundry: `v1.2.3`.
