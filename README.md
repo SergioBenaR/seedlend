@@ -10,6 +10,10 @@ Build an original, testnet-deployed submission for BUIDL CTC 2026 Fall whose cor
 
 The prototype does not use real money, does not promise returns and does not claim that its demonstration asset is a legally backed RWA.
 
+## Live demo
+
+https://seedlend.vercel.app
+
 ## Public testnet result
 
 The complete vertical slice has been executed on public testnets:
@@ -36,12 +40,14 @@ That makes the cross-chain proof part of the credit control path itself: **no va
 - T07–T10: native-tCTC repayment flow, payment evidence, completion events and repayment protections complete.
 - T11–T19: public Sepolia + Creditcoin deployment and complete Attestcoin-gated E2E lifecycle complete.
 - T20: judge-facing static product demo implemented in `app/`.
-- T21: Vercel deployment pending connection of the deployment account.
+- T21: production demo deployed and verified on Vercel at https://seedlend.vercel.app.
 - T23–T24: judge-facing pitch narrative and technical evidence documentation prepared.
 
 ## Demo interface
 
 The web demo is deliberately product-first rather than a generic hackathon landing page. It exposes the real completed lifecycle and links directly to the public transactions and contracts used in the demo.
+
+Live: https://seedlend.vercel.app
 
 Build it locally with:
 
