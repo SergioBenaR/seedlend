@@ -28,24 +28,24 @@ const steps = [
   ["02", "Sepolia", "Investment position locked", "100 SLDP is transferred into SeedLendVault. The vault emits PositionLocked with the exact loan terms hash.", explorerLink(sep, "tx", evidence.positionTx, short(evidence.positionTx)), "POSITION LOCKED"],
   ["03", "Attestcoin", "Source evidence proven", "Attestcoin proves the Sepolia transaction to Creditcoin. Without this proof, SeedLendLoan cannot activate.", explorerLink(cc, "tx", evidence.activationTx, short(evidence.activationTx)), "PROOF VERIFIED"],
   ["04", "Creditcoin", "Loan activated", "The destination contract validates vault, borrower, asset, principal and termsHash before changing state to Active.", "sourceQueryId recorded on-chain", "ACTIVE"],
-  ["05", "Creditcoin", "Repayments completed", "Three native tCTC repayments are recorded and forwarded to the originator. The final payment emits LoanPaid.", evidence.repayments.map((tx, i) => explorerLink(cc, "tx", tx, `36 tCTC · ${i + 1}/3`)).join("<span class='dot'>·</span>"), "108 / 108 tCTC"],
+  ["05", "Creditcoin", "Repayments recorded", "Native tCTC repayments are recorded on-chain and forwarded to the originator. In this public demo, three payments complete the 108 tCTC total due.", evidence.repayments.map((tx, i) => explorerLink(cc, "tx", tx, `36 tCTC · ${i + 1}/3`)).join("<span class='dot'>·</span>"), "108 / 108 tCTC"],
   ["06", "Creditcoin", "Release eligibility reached", "After totalDue is reached, the contract emits ReleaseEligible. Cross-chain release itself stays outside the hackathon MVP.", explorerLink(cc, "tx", evidence.repayments[2], "View final on-chain event"), "RELEASE ELIGIBLE"]
 ];
 
 const app = document.querySelector("#app");
 app.innerHTML = `
 <header class="topbar">
-  <a class="brand" href="#top"><span class="brand-mark">S</span><span>SeedLend</span></a>
+  <a class="brand" href="#top"><img class="brand-mark" src="./seedlend-isotype.png" alt="" style="border:0;box-shadow:none;object-fit:contain;background:transparent"><span>SeedLend</span></a>
   <nav><a href="#proof">Proof path</a><a href="#evidence">Evidence</a><a class="nav-cta" href="https://github.com/SergioBenaR/seedlend" target="_blank" rel="noreferrer">GitHub ↗</a></nav>
 </header>
 <main id="top">
   <section class="hero shell">
     <div class="hero-copy">
       <div class="eyebrow"><span class="live-dot"></span> VERIFIED PUBLIC TESTNET RUN</div>
-      <h1>Investment credit that only activates when the position is <em>provably there.</em></h1>
-      <p class="lede">SeedLend is directed investment microcredit. Credit lives on Creditcoin; the financed position lives on Sepolia; Attestcoin is the trust-minimized gate between them.</p>
+      <h1>Your first investment shouldn’t have to wait until you have the <em>capital.</em></h1>
+      <p class="lede">SeedLend helps young people build their first investment position — without needing existing assets as collateral — combining directed credit, financial education and verifiable on-chain ownership.</p>
       <div class="hero-actions"><a class="button primary" href="#proof">Inspect the proof path</a><a class="button ghost" href="${cc}/address/${evidence.loan}" target="_blank" rel="noreferrer">Open Creditcoin contract ↗</a></div>
-      <div class="hero-metrics"><div><strong>100</strong><span>tCTC principal</span></div><div><strong>100</strong><span>SLDP locked</span></div><div><strong>3×36</strong><span>tCTC repaid</span></div><div><strong>0</strong><span>remaining</span></div></div>
+      <div class="hero-metrics"><div><strong>100</strong><span>tCTC principal</span></div><div><strong>100</strong><span>SLDP locked</span></div><div><strong>108</strong><span>tCTC repaid in demo</span></div><div><strong>0</strong><span>remaining</span></div></div>
     </div>
     <div class="proof-card">
       <div class="proof-card-head"><span>LOAN #${evidence.loanId}</span><span class="status-pill">PAID · RELEASE ELIGIBLE</span></div>
@@ -56,7 +56,7 @@ app.innerHTML = `
     </div>
   </section>
 
-  <section class="thesis shell"><div class="section-kicker">WHY THIS MATTERS</div><div class="thesis-grid"><h2>Credit should finance the investment, <span>not hand over unrestricted cash.</span></h2><div class="thesis-copy"><p>A borrower can access an investment position before having the full capital upfront. SeedLend directs the financed principal into a locked position and makes activation conditional on cross-chain evidence.</p><p>The hackathon asset, SLDP, is intentionally unbacked and has no promised return. The prototype demonstrates infrastructure, not a production financial product.</p></div></div></section>
+  <section class="thesis shell"><div class="section-kicker">WHY THIS MATTERS</div><div class="thesis-grid"><h2>Start investing before you have the <span>full capital.</span></h2><div class="thesis-copy"><p>SeedLend turns the ability to make small, regular payments into an investment position instead of unrestricted cash. Users can learn how investing works while building their position over time.</p><p>Every repayment is recorded on-chain, creating a verifiable repayment history from the user’s first SeedLend loan. Over time, that history could support reputation and better access to credit.</p><p>The hackathon asset, SLDP, is intentionally unbacked and has no promised return. The prototype demonstrates infrastructure, not a production financial product.</p></div></div></section>
 
   <section class="proof-section shell" id="proof">
     <div class="section-heading"><div><div class="section-kicker">THE VERTICAL SLICE</div><h2>One lifecycle. Two chains. One proof gate.</h2></div><p>Every critical transition below has already happened on public testnets.</p></div>
@@ -77,5 +77,5 @@ app.innerHTML = `
 
   <section class="boundary shell"><div class="section-kicker">MVP BOUNDARY</div><div class="boundary-grid"><div><h3>Implemented now</h3><p>Loan state on Creditcoin, locked position on Sepolia, Attestcoin proof-gated activation, native tCTC repayment history and release eligibility.</p></div><div><h3>Deliberately next</h3><p>Production underwriting, real investment assets, legal/custody model, default handling and reverse cross-chain release.</p></div></div></section>
 </main>
-<footer class="footer shell"><div><strong>SeedLend</strong><span>Cross-chain infrastructure for financed investment positions.</span></div><div class="footer-note">BUIDL CTC 2026 · Public testnet demo · No real funds or promised returns</div></footer>
+<footer class="footer shell"><div><img src="./seedlend-logo-full.png" alt="SeedLend — Your first investment starts here" style="width:300px;max-width:72vw;height:auto;display:block"><span>Cross-chain infrastructure for financed investment positions.</span></div><div class="footer-note">BUIDL CTC 2026 · Public testnet demo · No real funds or promised returns</div></footer>
 `;
