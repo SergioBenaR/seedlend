@@ -10,26 +10,57 @@ Build an original, testnet-deployed submission for BUIDL CTC 2026 Fall whose cor
 
 The prototype does not use real money, does not promise returns and does not claim that its demonstration asset is a legally backed RWA.
 
+## Public testnet result
+
+The complete vertical slice has been executed on public testnets:
+
+`Creditcoin loan → Sepolia PositionLocked → Attestcoin proof → Creditcoin activation → 3 × 36 tCTC repayments → LoanPaid → ReleaseEligible`
+
+- Principal: 100 tCTC.
+- Total due: 108 tCTC.
+- Demonstration position: 100 SLDP.
+- Final balance: 0 tCTC.
+- Source chain: Ethereum Sepolia, Attestcoin chainKey 1.
+- Destination: Creditcoin CC3 testnet.
+- Evidence: [`docs/testnet-evidence.md`](docs/testnet-evidence.md).
+
+## Why Attestcoin is core
+
+Attestcoin is a state-transition dependency, not an analytics add-on. `SeedLendLoan` refuses to activate unless the proof from Sepolia matches the expected vault, loan ID, borrower, asset, principal and committed `termsHash`.
+
+That makes the cross-chain proof part of the credit control path itself: **no valid position proof, no active loan**.
+
 ## Implementation status
 
-- T01 repository scaffold: complete.
-- T02 public environment and tool verification: complete; the owner-controlled Creditcoin wallet is funded with testnet CTC.
-- T03 Creditcoin loan model: implemented and covered by seven Foundry tests.
-- T04 Sepolia position vault: implemented and covered by seven Foundry tests.
-- T05 Attestcoin proof verification: implemented locally in the Creditcoin contract and one-shot worker; live end-to-end verification awaits testnet deployment.
-- T06 deployment preparation: demo asset, safe deployment automation and local deployment validation complete; public-testnet deployment remains pending.
-- T07–T10 native-tCTC repayment: implemented with immediate originator forwarding, on-chain
-  payment evidence, completion events and repayment protections; testnet deployment remains pending.
+- T01–T06: repository scaffold, contracts, Attestcoin worker and guarded deployment preparation complete.
+- T07–T10: native-tCTC repayment flow, payment evidence, completion events and repayment protections complete.
+- T11–T19: public Sepolia + Creditcoin deployment and complete Attestcoin-gated E2E lifecycle complete.
+- T20: judge-facing static product demo implemented in `app/`.
+- T21: Vercel deployment pending connection of the deployment account.
+- T23–T24: judge-facing pitch narrative and technical evidence documentation prepared.
+
+## Demo interface
+
+The web demo is deliberately product-first rather than a generic hackathon landing page. It exposes the real completed lifecycle and links directly to the public transactions and contracts used in the demo.
+
+Build it locally with:
+
+```bash
+pnpm --filter @seedlend/app build
+```
+
+The app is static and contains no private keys or signing material. Vercel deployment uses `app/` as the project root.
 
 ## MVP boundary
 
 Included:
 
-- `SeedLendLoan` on Creditcoin testnet;
-- `SeedLendVault` on Ethereum Sepolia;
-- functional Attestcoin verification;
-- testnet repayment history inside SeedLend;
-- a reproducible demo, web interface and technical documentation.
+- `SeedLendLoan` on Creditcoin CC3 testnet;
+- `SeedLendVault` and the unbacked SLDP demo asset on Ethereum Sepolia;
+- functional Attestcoin proof-gated activation;
+- native tCTC repayment history inside SeedLend;
+- `LoanPaid` and `ReleaseEligible` completion evidence;
+- reproducible E2E scripts, public transaction evidence and a judge-facing web demo.
 
 Excluded until separately designed and validated:
 
@@ -45,44 +76,33 @@ Excluded until separately designed and validated:
 contracts/creditcoin/  SeedLendLoan and its tests
 contracts/sepolia/     SeedLendVault and its tests
 worker/                Attestcoin proof workflow
-app/                   Web interface
-scripts/               Local checks and guarded deployment automation
+app/                   Public testnet demo interface
+scripts/               Checks, deployment and E2E automation
 tests/                 Repository-level smoke tests
-docs/                  Architecture, decisions and verification log
+docs/                  Architecture, decisions, pitch and public evidence
 ```
 
-## Local setup
+## Local verification
 
-Required now:
+Requirements:
 
 - Node.js 20 or newer;
 - pnpm 11;
+- Foundry `v1.2.3`;
 - Git.
 
-Required before contract implementation and deployment:
-
-- Foundry `v1.2.3`, matching the official Creditcoin example repository verified on 26 August 2026.
-
-Run the dependency-free repository checks:
+Run repository checks:
 
 ```bash
-pnpm test
+pnpm check
 ```
 
-Inspect local prerequisites:
-
-```bash
-pnpm preflight
-```
-
-Each contract package can be checked independently:
+Run each Solidity suite:
 
 ```bash
 cd contracts/creditcoin && forge test
 cd contracts/sepolia && forge test
 ```
-
-In this workspace, the verified project-local binary is stored outside version control under `.tools/foundry/`.
 
 Verify the public Creditcoin and Attestcoin environment:
 
@@ -90,19 +110,14 @@ Verify the public Creditcoin and Attestcoin environment:
 pnpm verify:networks
 ```
 
-Copy `.env.example` to `.env` only when testnet configuration is available. Never commit private keys or secrets.
+Never commit `.env`, private keys or `.deployments/` local checkpoints.
 
-Validate deployment preparation without sending transactions:
+## Key documentation
 
-```bash
-pnpm deploy:check
-```
-
-The guarded public-testnet procedure is documented in `docs/t06-deployment.md`.
-
-## Working method
-
-SeedLend uses Scrumban with one technical task and one product/validation task in progress. The detailed execution plan is maintained as a separate project artifact.
+- [`docs/testnet-evidence.md`](docs/testnet-evidence.md) — public contracts and transactions from the completed lifecycle.
+- [`docs/pitch.md`](docs/pitch.md) — judge-facing product and Attestcoin narrative.
+- [`docs/contract-model.md`](docs/contract-model.md) — contract model.
+- [`docs/decision-log.md`](docs/decision-log.md) — MVP decisions and boundaries.
 
 ## Official references
 
