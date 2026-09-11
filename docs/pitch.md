@@ -4,6 +4,10 @@
 
 SeedLend is directed investment microcredit: it finances an investment position instead of handing out unrestricted cash, and the Creditcoin loan activates only after Attestcoin proves that the corresponding position exists on another chain.
 
+## Live demo
+
+https://seedlend.vercel.app
+
 ## Problem
 
 For a young person without meaningful savings or credit history, the first investment is often delayed because the initial capital is inaccessible. Conventional consumer credit also solves a different problem: it delivers cash, not a verifiable investment position.
@@ -49,7 +53,7 @@ No automatic cross-chain release, liquidation/default marketplace, production un
 
 ## Judge-facing demo order
 
-1. Open the SeedLend web demo and state the thesis in one sentence.
+1. Open https://seedlend.vercel.app and state the thesis in one sentence.
 2. Show Loan #1 and the two-chain architecture.
 3. Open `PositionLocked` on Sepolia.
 4. Show the Attestcoin activation transaction on Creditcoin and emphasize: no proof, no activation.
