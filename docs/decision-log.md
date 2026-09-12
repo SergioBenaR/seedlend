@@ -56,6 +56,39 @@ These points are intentionally recorded as founder observations or hypotheses, n
 - Measure behavior before explaining SeedLend: betting usage/frequency, typical amounts, existing savings/investments, perceived minimum capital to invest, practical financial education, use of an extra USD 10, perceived cost of professional investment education, willingness to finish a short free course and expected annual return.
 - Record memorable verbatim responses when participants consent; video interviews are useful only with explicit permission to record and separate permission for public reuse.
 
+## Consolidated product strategy — 12 September 2026
+
+The full product thesis, hypotheses, roadmap boundaries and pitch rules are now maintained in **`docs/product-strategy.md`**. The first customer-discovery round, exact interview questions, counts, qualitative observations and interpretation rules are maintained in **`docs/customer-discovery.md`**. Future work should consult these files before changing the pitch, product or demo narrative.
+
+Key additions now explicitly recorded:
+
+- SeedLend should be visible from the first second of the pitch; the working opening is **“What if you could make your first investment before you had the capital — without depending on traditional credit?”**
+- The user-value stack is now **investment capital/ownership + financial knowledge/credentials + verifiable repayment history**.
+- The product progression expands to `Learn → Simulate → Unlock → Invest → Pay → Own more → Diversify → Build`.
+- SeedLend should run a **free public introductory investment course every month** as both education and recurring acquisition. Users should pass theoretical and practical assessments; passing may produce a verifiable certificate useful as evidence of knowledge/CV value.
+- Specialized investment courses by sector, profession/career, asset class or interest are a future **paid education business line** and could help SeedLend build reputation as an investment-focused fintech.
+- A key UX hypothesis is to show progressive ownership after each repayment, e.g. **“You now own X% of this investment.”** The production ownership mechanism is not yet implemented.
+- After education/assessment, users may unlock greater autonomy to select, redistribute or diversify investment exposure, subject to risk controls.
+- A real production product should have scheduled monthly payments. A short grace period (currently hypothesized as up to five days) and behavioral incentives/consequences may help form repayment habits, but late fees are not yet a final policy.
+- Default must not remain conceptually unanswered: grace/restructuring should precede recovery; persistent default may allow the controlled position to be sold/transferred/recovered; a future secondary market may let another eligible user assume a position and remaining payments. Surplus/shortfall rules remain open.
+- SeedLend lends into a cold-start problem precisely because the target user lacks capital/history/collateral. Risk is mitigated conceptually by **directed capital + controlled investment position + education + limits/underwriting + verifiable repayment behavior**, not by requiring the user to already own collateral.
+- This is a key differentiation from overcollateralized DeFi lending: **Aave-like borrowing assumes the user already owns collateral; SeedLend is designed to help create the first investment position itself.** This is a conceptual comparison, not a claim about a partnership.
+- University communities are a strategic part of the thesis, not merely a demographic: cohorts may create peer learning, social proof, accountability, referrals, visible progress and community-investment effects over several years. These effects remain hypotheses to validate.
+- University/group dynamics observed in the first interviews are recorded as qualitative evidence in `docs/customer-discovery.md`; they are not yet evidence that SeedLend communities reduce default.
+- Business-model hypotheses now include B2C financing/service economics, a possible percentage of user investment returns, paid specialized courses, and B2B/B2B2C services for universities. No final pricing or revenue mix is selected.
+- University-held identity/enrollment data could later support selective-disclosure, verifiable-credential or ZK-based eligibility proofs so SeedLend verifies only needed claims without receiving unnecessary personal data. No university integration currently exists.
+- Educational credentials and repayment history should remain conceptually separate proofs even if later surfaced together in a SeedLend Credit Passport/reputation layer.
+- The pitch must explain the production intent for capital flow — capital provider → directed execution → investment position → verification → credit activation — while clearly stating that the current MVP proves the **trust layer**, not production settlement into real assets.
+- The current demo should not be stretched into claims about production asset returns, automatic release, default handling, formal credit scoring, KYC/custody, ZK identity, educational certification or progressive ownership. Those are roadmap/product layers.
+
+## First customer-discovery round — status update
+
+The original “near-term discovery” plan has now been partially executed. The first in-person round included **16 private-university students in La Paz**. Recorded signals include 11/16 normally spending available money, 10/16 believing at least USD 500 is needed to begin investing, 11/16 reporting no practical financial education and 15/16 saying they would save at least part of a concrete extra USD 10.
+
+The founder asked **eight specific interviewees** for their phone numbers to continue updating them about SeedLend; **all eight who were asked provided their number**. Do not restate this as “8 of 16 showed interest,” because the other eight were not asked.
+
+The next planned comparison cohort is a public-university workshop on **14 September 2026**. Maintain cohorts separately so private/public university, discipline, city and socioeconomic-context differences are not erased by premature aggregation.
+
 ## Open and intentionally not assumed
 
 - production repayment currency and economic terms;
@@ -65,4 +98,9 @@ These points are intentionally recorded as founder observations or hypotheses, n
 - formal identity, credit scoring, credit-bureau interoperability or portable reputation model;
 - final submission sector/track;
 - production jurisdiction, custody, underwriting and compliance model;
+- exact progressive-ownership mechanism;
+- default shortfall allocation and secondary-market mechanics;
+- exact monthly repayment/grace/late-payment policy;
+- exact university/B2B product and credential/ZK architecture;
+- final monetization mix;
 - open-source license.
