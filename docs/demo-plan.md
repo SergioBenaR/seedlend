@@ -81,6 +81,17 @@ End on the visible boundary between what works now and what comes next: producti
 - Do not claim SLDP is an RWA or has yield.
 - Do not present automatic asset purchase/settlement, default liquidation, ownership-percentage transfer, course/certification, university identity/ZK or community guarantees as implemented today.
 
-## Next implementation task before recording
+## Implementation status — 12 September 2026
 
-Refine the public web app so the product/user layer is visible before the existing proof timeline. Preserve the current technical evidence section. The safest addition is a clearly labeled product-experience section that distinguishes current MVP evidence from future product hypotheses.
+Completed in the repository:
+
+- A product-experience layer now appears before the technical proof timeline.
+- The product view explicitly shows the directed-financing path: no existing investment collateral → directed credit → capital goes to the investment → repay and build ownership.
+- The illustrative progress UI shows `You now own 40%` and is labeled `PRODUCT CONCEPT`.
+- Education/unlock, verifiable credential + repayment record, and university-cohort concepts are visibly separated from implemented MVP evidence.
+- The primary hero CTA now leads to the product layer before the proof path.
+- The static build script now copies the new product CSS/JS and both SeedLend logo assets into `dist/`; without this fix a Vercel build would have omitted the newly added product assets.
+
+## Next step
+
+Deploy the updated app, verify the rendered desktop/mobile experience, then record the 65–75 second product + proof demo using the flow above. Preserve the current technical evidence and do not expand the MVP scope before recording.
