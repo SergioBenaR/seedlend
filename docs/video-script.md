@@ -1,6 +1,6 @@
 # SeedLend — working hackathon video script
 
-_Last consolidated: 12 September 2026._
+_Last consolidated: 13 September 2026._
 
 Target final duration: **3:45–3:55**. SeedLend must appear from the first second. Product story first; blockchain appears only when the trust problem has been established. The technical demo should receive roughly **65–75 seconds**.
 
@@ -125,21 +125,21 @@ Transition from product view to proof architecture.
 
 **Narration**
 
-> Here is the SeedLend MVP. Loan number one is created on Creditcoin for 100 tCTC, but it cannot activate yet.
+> Here is the SeedLend MVP. Loan number two is created on Creditcoin for 100 tCTC, with a total due of 105 tCTC, but it cannot activate yet.
 >
 > First, the corresponding 100-token demonstration position is locked on Sepolia. Attestcoin then proves that source transaction to Creditcoin. The destination contract checks the exact vault, loan ID, borrower, asset, principal and committed terms before changing the loan to Active.
 >
-> The borrower then repays. Each payment, amount and timestamp is recorded on Creditcoin and forwarded to the originator. In this public run, three demonstration payments complete the 108 tCTC total due.
+> The borrower then repays in five demonstration payments of 21 tCTC. Each payment, amount and timestamp is recorded on Creditcoin and forwarded to the originator. Those five payments complete the 105 tCTC total due.
 >
 > The loan reaches Paid, the remaining balance becomes zero, and the contract emits ReleaseEligible.
 
 **Screen order**
 
-1. Loan #1 / 100 tCTC principal / 108 tCTC total due.
+1. Loan #2 / 100 tCTC principal / 105 tCTC total due.
 2. Sepolia `PositionLocked` transaction.
 3. Attestcoin activation transaction on Creditcoin.
 4. `ACTIVE` state and `sourceQueryId` evidence.
-5. Three repayment transactions.
+5. Five repayment transactions of 21 tCTC each.
 6. Final `Paid · 0 remaining · ReleaseEligible` state.
 
 Do not read hashes aloud. Explorer links are evidence, not the story.
@@ -167,7 +167,7 @@ Exact interpretation: the founder asked those eight students for their numbers a
 ## Non-negotiable accuracy rules
 
 - SLDP is an unbacked demonstration ERC-20, not an RWA and not a yield-bearing asset.
-- The 100 → 108 tCTC demo term is not an 8% APR; there is no on-chain repayment calendar or production APR.
+- The approved public demo uses 100 tCTC principal, five repayments of 21 tCTC and 105 tCTC total due. The extra 5 tCTC is total demo interest; do not call it a 5% APR because no repayment period is defined on-chain.
 - Current payment records are verifiable SeedLend repayment history, not a bureau credit score and not verified on-time history.
 - Progressive ownership, monthly due dates/grace penalties, automatic asset purchase, real investment yield, course certification, ZK university identity, default liquidation/secondary market and automatic cross-chain release are product direction/roadmap, not current MVP functionality.
 - Aave/Morpho/other protocols or asset providers must never be presented as partners or existing integrations unless independently established later.
