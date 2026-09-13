@@ -146,8 +146,51 @@
   letter-spacing:-2px;
 }
 
+/* Section 3 ending: progression + MVP note */
+.product-section{
+  padding-bottom:56px;
+}
+.product-section .product-flow{
+  margin-top:24px;
+  padding:20px 24px;
+  gap:14px;
+  justify-content:center;
+  background:rgba(112,239,173,.025);
+  border-color:rgba(112,239,173,.2);
+  font-size:16px;
+  line-height:1.4;
+}
+.product-section .product-flow span{
+  font-weight:650;
+  white-space:nowrap;
+}
+.product-section .product-flow b{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:42px;
+  color:var(--mint);
+  font-size:18px;
+  line-height:1;
+}
+.product-section .concept-note{
+  max-width:none;
+  margin:14px 0 0;
+  padding:16px 18px;
+  text-align:left;
+  color:#a5b6ab;
+  font-size:15px;
+  line-height:1.6;
+  border-left:3px solid var(--mint);
+  border-radius:0 10px 10px 0;
+  background:rgba(112,239,173,.035);
+}
+
 @media(max-width:760px){
   .product-section .capital-flow{grid-template-columns:1fr}
   .product-section .capital-flow>b{min-width:0;transform:none}
   .product-section .capital-flow>b::after{content:"↓";font-size:22px;letter-spacing:0}
+  .product-section .product-flow{justify-content:flex-start;gap:10px;padding:18px}
+  .product-section .product-flow b{min-width:28px}
+  .product-section .concept-note{font-size:14px;padding:14px 16px}
 }
