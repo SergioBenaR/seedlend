@@ -1,6 +1,6 @@
 # SeedLend public testnet evidence
 
-Generated: 2026-09-10T23:33:03.498Z
+Updated: 13 September 2026
 
 This is a testnet-only hackathon demonstration. SLDP is an unbacked demo asset and represents no legal claim or promised return.
 
@@ -21,31 +21,37 @@ This is a testnet-only hackathon demonstration. SLDP is an unbacked demo asset a
 
 The SLDP and SeedLendLoan addresses are identical numerically but exist on different EVM chains.
 
-## End-to-end lifecycle
+## Final public demo run
 
-- Loan ID: `1`
+The current demo reuses the deployed contracts above and executes Loan #2 through the complete implemented lifecycle.
+
+- Loan ID: `2`
 - Principal: 100 tCTC
-- Total due: 108 tCTC
-- Demonstration payments: 3 × 36 tCTC
+- Total due: 105 tCTC
+- Demonstration payments: 5 × 21 tCTC
 - Position: 100 SLDP
-- Terms hash: `0x0295c2692b961707f77078d5623726ec5279e32396406b36f85dc5f637864c1c`
+- Terms hash: `0x95a88687f771171ebe70e5ce877a06ce9aefd83ad5726a8604d410a670206ff6`
 
-1. Demo asset deployment: https://sepolia.etherscan.io/tx/0x2c74e0a2fc45756e41f3a743c481e1fda80c04c27b6adf3e67a94109b42c5ac2
-2. Vault deployment: https://sepolia.etherscan.io/tx/0xcb49d2a0a92c3bc724777d95197734aab38e9ac57e00f8197f302dc6ffbc7d2d
-3. Creditcoin loan deployment: https://creditcoin-testnet.blockscout.com/tx/0xe938143eb5e90c4a7a14065d26a84c2ead039fc81c5e2dab903acb8a1021cbc4
-4. Borrower funding: https://creditcoin-testnet.blockscout.com/tx/0x4484c5a70eedbdb750af90c909b38cadb58512be3ffb876f44eccd4f0237468e
-5. SLDP approval: https://sepolia.etherscan.io/tx/0xf9e7ec6927adc0b844023bc419eda180a16be1e9af303d6cb57980e08e26178d
-6. PositionLocked: https://sepolia.etherscan.io/tx/0xc03e701b73983554f92dcf5407049323f73890cbd82599f3e4b332a83c88f14f
-7. Attestcoin proof / activation: https://creditcoin-testnet.blockscout.com/tx/0xf5cc29e469710cf66ea0764d383123232b6e07131ce9302de3176807c50ac5a7
-8. Repayment 1: https://creditcoin-testnet.blockscout.com/tx/0x15693edf2ffc60a8f1b74a1b7c0c2f503b977a13a0121695a56bb08d4c4c44a2
-9. Repayment 2: https://creditcoin-testnet.blockscout.com/tx/0x2e1e9ea3661f9fb87a689ce01163f2874a735138588459e495409f41e8a1316c
-10. Repayment 3 / LoanPaid / ReleaseEligible: https://creditcoin-testnet.blockscout.com/tx/0x21abeecf414618f9b54cb910df09a0778363aef740c660409d89d69113bdf8bf
+### Source position and activation
+
+1. PositionLocked: https://sepolia.etherscan.io/tx/0x104f7840f56665e9c1ed5c3221e074df9e36256423f5b6637896e1148547bdaa
+2. Attestcoin proof / Creditcoin activation: https://creditcoin-testnet.blockscout.com/tx/0xe47dc33a03c4de024fc3281b90b51ed56bfb9cee91472856afc25a336e7c7f39
+
+### Repayments
+
+1. 21 tCTC: https://creditcoin-testnet.blockscout.com/tx/0x0ff5ba45e7d94635a8826993633c04fb42282de7c1221ddd1f77bf45a68523aa
+2. 21 tCTC: https://creditcoin-testnet.blockscout.com/tx/0x710b0db28eb38ffadf71dbbb83095f632b76bbe43d7b72df0e0be51f431c7726
+3. 21 tCTC: https://creditcoin-testnet.blockscout.com/tx/0x9bcbd40f762cb3fd821baf7fae9158cd7429f4600ffab58ae774a4d9fe83288e
+4. 21 tCTC: https://creditcoin-testnet.blockscout.com/tx/0xa3d4d05830b0215bced5d5d19895795eecd8a8dc94d35f121a961c94a0244fbd
+5. 21 tCTC / LoanPaid / ReleaseEligible: https://creditcoin-testnet.blockscout.com/tx/0xbbad48dcc51bd9315de0767511af84f32eb563f2431d555e73caefd5b9eb388d
 
 ## Verified final state
 
-- Payment records: 3
+- Payment records: 5
+- Total repaid: 105 tCTC
 - Remaining balance: 0 tCTC
 - LoanPaid emitted: yes
 - ReleaseEligible emitted: yes
-- Attestcoin Proof Builder: https://prover.cc3-testnet.creditcoin.network
 - Source chain: Sepolia, chainKey 1
+
+The extra 5 tCTC is total demo interest. It is not presented as a 5% APR because the current contract does not encode a repayment period or APR.
