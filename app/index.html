@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="SeedLend helps young people build a first investment position through directed credit, financial education and verifiable on-chain ownership." />
+    <meta name="description" content="SeedLend helps young people start building a first investment position through directed credit, financial education and verifiable repayment history." />
     <meta name="theme-color" content="#07110d" />
     <title>SeedLend — Your first investment starts here</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,28 +17,72 @@
   <body>
     <div id="app"></div>
 
+    <section class="problem-section shell" id="problem">
+      <div class="section-heading problem-heading">
+        <div>
+          <div class="section-kicker">THE PROBLEM</div>
+          <h2>Young people are entering adulthood without the tools — or capital — to start building early.</h2>
+        </div>
+        <p>SeedLend starts from a simple gap: wanting to build capital is different from already having enough capital, collateral or practical investing experience to begin.</p>
+      </div>
+
+      <div class="latam-evidence">
+        <article class="stat-card">
+          <span class="stat-source">BRAZIL · PISA 2022</span>
+          <strong>45.1%</strong>
+          <p>of 15-year-old students performed below the baseline level of financial literacy.</p>
+          <a href="https://www.oecd.org/en/publications/pisa-2022-results-volume-iv-factsheets_34d60137-en/brazil_1c815ef9-en.html" target="_blank" rel="noreferrer">OECD source ↗</a>
+        </article>
+        <article class="stat-card">
+          <span class="stat-source">COLOMBIA · 2023</span>
+          <strong>16.4%</strong>
+          <p>of adults answered all three basic questions on interest, inflation and diversification correctly.</p>
+          <a href="https://banrep.gov.co/es/blog/educacion-financiera-evidencia-colombia-entorno-alta-inflacion" target="_blank" rel="noreferrer">Banco de la República source ↗</a>
+        </article>
+      </div>
+
+      <div class="discovery-block">
+        <div class="discovery-intro">
+          <div>
+            <div class="section-kicker">EARLY CUSTOMER DISCOVERY</div>
+            <h3>16 university students interviewed in La Paz, Bolivia.</h3>
+          </div>
+          <p>We wanted to understand how this problem appears around us before building beyond the hackathon prototype.</p>
+        </div>
+        <div class="discovery-grid">
+          <article><strong>11/16</strong><span>normally spend money left after necessary expenses</span></article>
+          <article><strong>11/16</strong><span>reported no practical financial education</span></article>
+          <article><strong>10/16</strong><span>believed they needed at least $500 to begin investing</span></article>
+        </div>
+        <div class="discovery-insight">
+          <div><strong>15/16</strong><span>would save at least part of a concrete extra $10</span></div>
+          <p>The intention to build capital is there. What is missing is a practical path to start.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="product-section shell" id="product">
       <div class="section-heading product-heading">
         <div>
-          <div class="section-kicker">PRODUCT EXPERIENCE</div>
-          <h2>Make every payment feel like <span>building ownership.</span></h2>
+          <div class="section-kicker">HOW SEEDLEND WORKS</div>
+          <h2>Finance the investment — <span>not unrestricted spending.</span></h2>
         </div>
-        <p>SeedLend is designed around progress the user can understand: learn first, finance a specific investment rather than unrestricted spending, build ownership over time and create a verifiable record.</p>
+        <p>SeedLend directs financing into a specific investment position so the user can begin before having the full capital, then repay over time while building capital, knowledge and a verifiable repayment record.</p>
       </div>
 
       <div class="capital-flow" aria-label="SeedLend directed investment flow">
-        <div><small>START</small><strong>No existing investment collateral</strong></div>
+        <div><small>START</small><strong>No full starting capital or investment collateral</strong></div>
         <b>→</b>
-        <div><small>DIRECTED CREDIT</small><strong>Capital goes to the investment</strong></div>
+        <div><small>DIRECTED CREDIT</small><strong>Capital goes to a specific investment</strong></div>
         <b>→</b>
-        <div><small>USER PROGRESS</small><strong>Repay and build ownership</strong></div>
+        <div><small>BUILD</small><strong>Repay over time and build the position</strong></div>
       </div>
 
       <div class="product-layout">
         <article class="ownership-card">
           <div class="concept-head">
-            <span>ILLUSTRATIVE USER VIEW</span>
-            <span class="concept-pill">PRODUCT CONCEPT</span>
+            <span>WHAT REPAYMENT SHOULD FEEL LIKE</span>
+            <span class="concept-pill">ILLUSTRATIVE VIEW</span>
           </div>
           <div class="position-head">
             <div><small>FIRST INVESTMENT</small><strong>$100 financed position</strong></div>
@@ -49,33 +93,33 @@
             <strong>You now own <em>40%</em></strong>
           </div>
           <div class="progress-track" aria-label="Illustrative ownership progress of 40 percent"><span></span></div>
-          <p>Instead of only watching a debt balance fall, the user sees a positive milestone grow after each scheduled payment.</p>
+          <p>Instead of only watching a debt balance fall, the user sees progress toward owning more of the investment.</p>
           <div class="concept-stats">
-            <div><span>Learning</span><strong>Core course passed</strong></div>
-            <div><span>Next unlock</span><strong>More investment choice</strong></div>
+            <div><span>Knowledge</span><strong>Learn how the investment works</strong></div>
+            <div><span>Repayment</span><strong>Build a verifiable record</strong></div>
           </div>
         </article>
 
         <div class="product-stack">
           <article class="feature-card">
             <span class="feature-index">01</span>
-            <div><h3>Learn before unlocking more choice</h3><p>A free monthly course can combine practical and theoretical assessment. Passing can unlock more autonomy over how the user allocates the investment.</p><span class="feature-tag">FREE MONTHLY COURSE · CONCEPT</span></div>
+            <div><h3>Learn before taking more investment decisions</h3><p>A recurring free course can combine practical and theoretical assessment before the user unlocks more investment choice.</p></div>
           </article>
           <article class="feature-card">
             <span class="feature-index">02</span>
-            <div><h3>Build proof of knowledge and repayment</h3><p>Educational credentials and repayment history remain separate signals, but both can become verifiable records the user carries forward.</p><span class="feature-tag">CREDENTIAL + REPAYMENT RECORD · CONCEPT</span></div>
+            <div><h3>Build knowledge and repayment history separately</h3><p>What the user learns and how the user repays can become two distinct, verifiable signals carried forward.</p></div>
           </article>
           <article class="feature-card">
             <span class="feature-index">03</span>
-            <div><h3>Grow with a university cohort</h3><p>Students spend years together. SeedLend can turn peer influence toward learning, visible progress and accountability around building capital.</p><span class="feature-tag">COMMUNITY FLYWHEEL · HYPOTHESIS</span></div>
+            <div><h3>Use universities as a learning and distribution layer</h3><p>Recurring student cohorts can make learning visible, create peer proof and give SeedLend a repeatable acquisition channel.</p></div>
           </article>
         </div>
       </div>
 
       <div class="product-flow" aria-label="SeedLend product progression">
-        <span>Learn</span><b>→</b><span>Pass</span><b>→</b><span>Unlock</span><b>→</b><span>Invest</span><b>→</b><span>Pay</span><b>→</b><span>Own more</span><b>→</b><span>Diversify</span>
+        <span>Learn</span><b>→</b><span>Invest</span><b>→</b><span>Pay</span><b>→</b><span>Own more</span><b>→</b><span>Build history</span><b>→</b><span>Diversify</span>
       </div>
-      <p class="concept-note">Product concept: progressive ownership, scheduled repayment incentives, education credentials and cohort features are roadmap hypotheses. They are not represented as implemented functionality in the public testnet MVP below.</p>
+      <p class="concept-note">The hackathon MVP below proves the cross-chain trust layer. Education, ownership progress and cohort features are the product layers SeedLend is designed to build around it.</p>
     </section>
   </body>
 </html>
