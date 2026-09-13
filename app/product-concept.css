@@ -148,42 +148,50 @@
 
 /* Section 3 ending: progression + MVP note */
 .product-section{
-  padding-bottom:56px;
+  padding-bottom:42px;
 }
 .product-section .product-flow{
   margin-top:24px;
-  padding:20px 24px;
-  gap:14px;
+  padding:22px 26px;
+  gap:12px;
   justify-content:center;
-  background:rgba(112,239,173,.025);
-  border-color:rgba(112,239,173,.2);
-  font-size:16px;
+  background:rgba(112,239,173,.03);
+  border-color:rgba(112,239,173,.22);
+  font-size:17px;
   line-height:1.4;
 }
 .product-section .product-flow span{
-  font-weight:650;
+  font-weight:700;
   white-space:nowrap;
 }
 .product-section .product-flow b{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  min-width:42px;
-  color:var(--mint);
-  font-size:18px;
+  min-width:58px;
+  color:transparent;
+  font-size:0;
   line-height:1;
 }
+.product-section .product-flow b::after{
+  content:"────→";
+  color:var(--mint);
+  font-size:19px;
+  font-family:"DM Mono",monospace;
+  font-weight:500;
+  letter-spacing:-2px;
+}
 .product-section .concept-note{
-  max-width:none;
-  margin:14px 0 0;
-  padding:16px 18px;
+  max-width:100%;
+  margin:12px 0 0;
+  padding:18px 22px;
   text-align:left;
-  color:#a5b6ab;
-  font-size:15px;
+  color:#b0c0b6;
+  font-size:16px;
   line-height:1.6;
-  border-left:3px solid var(--mint);
-  border-radius:0 10px 10px 0;
-  background:rgba(112,239,173,.035);
+  border:1px solid rgba(112,239,173,.16);
+  border-radius:12px;
+  background:rgba(112,239,173,.028);
 }
 
 @media(max-width:760px){
@@ -191,6 +199,7 @@
   .product-section .capital-flow>b{min-width:0;transform:none}
   .product-section .capital-flow>b::after{content:"↓";font-size:22px;letter-spacing:0}
   .product-section .product-flow{justify-content:flex-start;gap:10px;padding:18px}
-  .product-section .product-flow b{min-width:28px}
-  .product-section .concept-note{font-size:14px;padding:14px 16px}
+  .product-section .product-flow b{min-width:34px}
+  .product-section .product-flow b::after{content:"→";font-size:18px;letter-spacing:0}
+  .product-section .concept-note{font-size:14px;padding:16px 18px}
 }
