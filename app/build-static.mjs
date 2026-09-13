@@ -8,6 +8,7 @@ const files = [
   "styles.css",
   "product-concept.css",
   "hero-fix.css",
+  "evidence-fix.css",
   "main.js",
   "product-layout.js",
   "seedlend-isotype.png",
