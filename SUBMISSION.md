@@ -116,9 +116,13 @@ The 100 → 108 tCTC demonstration must not be described as an 8% APR because th
 - **Track:** DeFi
 - **Repository URL:** https://github.com/SergioBenaR/seedlend
 - **Live product URL:** https://seedlend.vercel.app
-- **Deck / whitepaper PDF URL:** `PENDING`
+- **Deck / whitepaper PDF:** completed locally; public hosting URL `PENDING`
+- **Deck source of truth:** `docs/deck-content.md`
 - **Demo video URL:** `PENDING`
-- **Final submission description:** `PENDING FINAL COPY`
+
+## Final submission description
+
+SeedLend is directed investment credit for young people who lack starting capital, credit history or collateral. Instead of handing the borrower unrestricted cash, financing is directed into an investment position. In the public MVP, the canonical loan lifecycle runs on Creditcoin CC3, the financed demonstration position is locked on Ethereum Sepolia, and Attestcoin cryptographically proves that exact external position before the loan can activate. We completed the full testnet lifecycle from a 100 tCTC loan and 100 SLDP position through Attestcoin-gated activation, three repayments and the final `Paid` / `ReleaseEligible` state. The broader product vision combines directed investment access with free recurring financial education, verifiable credentials, visible ownership progress, university cohorts and verifiable repayment history — helping users begin building capital, knowledge and financial reputation before they already have traditional collateral.
 
 ## Pre-submit checklist
 
@@ -130,9 +134,10 @@ The 100 → 108 tCTC demonstration must not be described as an 8% APR because th
 - [x] Public transaction evidence recorded.
 - [x] Repository, worker, app build and both Foundry suites pass CI.
 - [x] Product strategy, customer discovery, pitch and demo plan preserved in repository.
+- [x] Seven-slide hackathon deck content finalized and preserved in repository.
 - [ ] Latest product-first web build deployed to the final production URL.
 - [ ] Final public smoke test completed.
 - [ ] Repository made accessible to hackathon judges.
-- [ ] Deck/whitepaper PDF completed and hosted.
+- [ ] Deck/whitepaper PDF hosted at a public URL.
 - [ ] Demo video completed and hosted.
 - [ ] Final DoraHacks form completed and checked for claim consistency.
