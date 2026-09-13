@@ -43,7 +43,7 @@ app.innerHTML = `
     <div class="hero-copy">
       <div class="eyebrow"><span class="live-dot"></span> VERIFIED PUBLIC TESTNET RUN</div>
       <h1>Your first investment shouldn’t have to wait until you have the <em>capital.</em></h1>
-      <p class="lede">SeedLend helps young people build their first investment position — without needing existing assets as collateral — combining directed credit, financial education and verifiable on-chain ownership.</p>
+      <p class="lede">SeedLend helps young people start building their first investment position before they have the full capital, using directed credit, financial education and a verifiable repayment record.</p>
       <div class="hero-actions"><a class="button primary" href="#proof">Inspect the proof path</a><a class="button ghost" href="${cc}/address/${evidence.loan}" target="_blank" rel="noreferrer">Open Creditcoin contract ↗</a></div>
       <div class="hero-metrics"><div><strong>100</strong><span>tCTC principal</span></div><div><strong>100</strong><span>SLDP locked</span></div><div><strong>108</strong><span>tCTC repaid in demo</span></div><div><strong>0</strong><span>remaining</span></div></div>
     </div>
