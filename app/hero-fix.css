@@ -33,8 +33,24 @@
 .hero .sep-icon:after,.hero .cc-icon:after{font-size:14px;letter-spacing:.03em}
 .hero .chain-node small{font-size:14px;line-height:1.25;letter-spacing:.04em;margin-bottom:3px}
 .hero .chain-node b{font-size:16px;line-height:1.25}
-.hero .connector{font-size:14px;line-height:1.2;gap:7px;letter-spacing:.03em}
-.hero .connector:before,.hero .connector:after{font-size:16px}
+.hero .connector{
+  grid-template-columns:auto auto auto;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-size:14px;
+  line-height:1.2;
+  letter-spacing:.03em;
+}
+.hero .connector:before,.hero .connector:after{
+  content:"-----→";
+  color:var(--mint);
+  font-size:16px;
+  font-family:"DM Mono",monospace;
+  font-weight:500;
+  letter-spacing:0;
+  white-space:nowrap;
+}
 .hero .gate-box{padding:15px 16px;gap:12px}
 .hero .gate-check{width:32px;height:32px;font-size:16px}
 .hero .gate-box small{font-size:14px;line-height:1.25;letter-spacing:.04em;margin-bottom:4px}
@@ -58,7 +74,8 @@
   .hero .proof-card{padding:20px}
   .hero .chain-row{grid-template-columns:1fr;gap:14px;padding:20px 0}
   .hero .chain-node:last-child{justify-content:flex-start;text-align:left}
-  .hero .connector{justify-self:start}
+  .hero .connector{justify-self:start;grid-template-columns:auto;justify-items:start;gap:4px}
+  .hero .connector:before,.hero .connector:after{content:"↓";font-size:20px}
   .hero .loan-data{grid-template-columns:1fr}
   .hero .loan-data div:nth-child(odd){border-right:0}
   .hero .loan-data div{border-bottom:1px solid var(--line)}
