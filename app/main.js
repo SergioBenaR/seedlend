@@ -1,20 +1,22 @@
 const evidence = {
-  loanId: "1",
+  loanId: "2",
   principal: "100 tCTC",
-  totalDue: "108 tCTC",
+  totalDue: "105 tCTC",
   position: "100 SLDP",
   borrower: "0x6003609a9559f53f8DeAd1a74852E742B2157fe0",
   originator: "0xED37fe15C710801Eb8D48C2B0a7DA2B062656D4C",
   loan: "0x442a74AC5CD4B12E61A6ce20397b2ceA97896c24",
   vault: "0x43120061E02461942b2aab72D4166b2df9ff3141",
   asset: "0x442a74AC5CD4B12E61A6ce20397b2ceA97896c24",
-  termsHash: "0x0295c2692b961707f77078d5623726ec5279e32396406b36f85dc5f637864c1c",
-  positionTx: "0xc03e701b73983554f92dcf5407049323f73890cbd82599f3e4b332a83c88f14f",
-  activationTx: "0xf5cc29e469710cf66ea0764d383123232b6e07131ce9302de3176807c50ac5a7",
+  termsHash: "0x95a88687f771171ebe70e5ce877a06ce9aefd83ad5726a8604d410a670206ff6",
+  positionTx: "0x104f7840f56665e9c1ed5c3221e074df9e36256423f5b6637896e1148547bdaa",
+  activationTx: "0xe47dc33a03c4de024fc3281b90b51ed56bfb9cee91472856afc25a336e7c7f39",
   repayments: [
-    "0x15693edf2ffc60a8f1b74a1b7c0c2f503b977a13a0121695a56bb08d4c4c44a2",
-    "0x2e1e9ea3661f9fb87a689ce01163f2874a735138588459e495409f41e8a1316c",
-    "0x21abeecf414618f9b54cb910df09a0778363aef740c660409d89d69113bdf8bf"
+    "0x0ff5ba45e7d94635a8826993633c04fb42282de7c1221ddd1f77bf45a68523aa",
+    "0x710b0db28eb38ffadf71dbbb83095f632b76bbe43d7b72df0e0be51f431c7726",
+    "0x9bcbd40f762cb3fd821baf7fae9158cd7429f4600ffab58ae774a4d9fe83288e",
+    "0xa3d4d05830b0215bced5d5d19895795eecd8a8dc94d35f121a961c94a0244fbd",
+    "0xbbad48dcc51bd9315de0767511af84f32eb563f2431d555e73caefd5b9eb388d"
   ]
 };
 
@@ -28,8 +30,8 @@ const steps = [
   ["02", "Sepolia", "Investment position locked", "100 SLDP is transferred into SeedLendVault. The vault emits PositionLocked with the exact loan terms hash.", explorerLink(sep, "tx", evidence.positionTx, short(evidence.positionTx)), "POSITION LOCKED"],
   ["03", "Attestcoin", "Source evidence proven", "Attestcoin proves the Sepolia transaction to Creditcoin. Without this proof, SeedLendLoan cannot activate.", explorerLink(cc, "tx", evidence.activationTx, short(evidence.activationTx)), "PROOF VERIFIED"],
   ["04", "Creditcoin", "Loan activated", "The destination contract validates vault, borrower, asset, principal and termsHash before changing state to Active.", "sourceQueryId recorded on-chain", "ACTIVE"],
-  ["05", "Creditcoin", "Repayments recorded", "Native tCTC repayments are recorded on-chain and forwarded to the originator. In this public demo, three payments complete the 108 tCTC total due.", evidence.repayments.map((tx, i) => explorerLink(cc, "tx", tx, `36 tCTC · ${i + 1}/3`)).join("<span class='dot'>·</span>"), "108 / 108 tCTC"],
-  ["06", "Creditcoin", "Release eligibility reached", "After totalDue is reached, the contract emits ReleaseEligible. Cross-chain release itself stays outside the hackathon MVP.", explorerLink(cc, "tx", evidence.repayments[2], "View final on-chain event"), "RELEASE ELIGIBLE"]
+  ["05", "Creditcoin", "Repayments recorded", "Native tCTC repayments are recorded on-chain and forwarded to the originator. In this public demo, five payments of 21 tCTC complete the 105 tCTC total due.", evidence.repayments.map((tx, i) => explorerLink(cc, "tx", tx, `21 tCTC · ${i + 1}/5`)).join("<span class='dot'>·</span>"), "105 / 105 tCTC"],
+  ["06", "Creditcoin", "Release eligibility reached", "After totalDue is reached, the contract emits ReleaseEligible. Cross-chain release itself stays outside the hackathon MVP.", explorerLink(cc, "tx", evidence.repayments[4], "View final on-chain event"), "RELEASE ELIGIBLE"]
 ];
 
 const app = document.querySelector("#app");
@@ -45,13 +47,13 @@ app.innerHTML = `
       <h1>Your first investment shouldn’t have to wait until you have the <em>capital.</em></h1>
       <p class="lede">SeedLend helps young people start building their first investment position before they have the full capital, using directed credit, financial education and a verifiable repayment record.</p>
       <div class="hero-actions"><a class="button primary" href="#proof">Inspect the proof path</a><a class="button ghost" href="${cc}/address/${evidence.loan}" target="_blank" rel="noreferrer">Open Creditcoin contract ↗</a></div>
-      <div class="hero-metrics"><div><strong>100</strong><span>tCTC principal</span></div><div><strong>100</strong><span>SLDP locked</span></div><div><strong>108</strong><span>tCTC repaid in demo</span></div><div><strong>0</strong><span>remaining</span></div></div>
+      <div class="hero-metrics"><div><strong>100</strong><span>tCTC principal</span></div><div><strong>100</strong><span>SLDP locked</span></div><div><strong>105</strong><span>tCTC repaid in demo</span></div><div><strong>0</strong><span>remaining</span></div></div>
     </div>
     <div class="proof-card">
       <div class="proof-card-head"><span>LOAN #${evidence.loanId}</span><span class="status-pill">PAID · RELEASE ELIGIBLE</span></div>
       <div class="chain-row"><div class="chain-node"><span class="chain-icon sep-icon">Ξ</span><div><small>SOURCE</small><b>Sepolia</b></div></div><div class="connector"><span></span><b>ATTESTCOIN</b><span></span></div><div class="chain-node"><span class="chain-icon cc-icon">C</span><div><small>DESTINATION</small><b>Creditcoin</b></div></div></div>
       <div class="gate-box"><span class="gate-check">✓</span><div><small>ACTIVATION GATE</small><strong>PositionLocked proof verified</strong></div></div>
-      <dl class="loan-data"><div><dt>Position</dt><dd>${evidence.position}</dd></div><div><dt>Total due</dt><dd>${evidence.totalDue}</dd></div><div><dt>Payments</dt><dd>3 confirmed</dd></div><div><dt>Remaining</dt><dd>0 tCTC</dd></div></dl>
+      <dl class="loan-data"><div><dt>Position</dt><dd>${evidence.position}</dd></div><div><dt>Total due</dt><dd>${evidence.totalDue}</dd></div><div><dt>Payments</dt><dd>5 confirmed</dd></div><div><dt>Remaining</dt><dd>0 tCTC</dd></div></dl>
       <div class="proof-footer mono">termsHash ${short(evidence.termsHash, 10, 8)}</div>
     </div>
   </section>
@@ -72,7 +74,7 @@ app.innerHTML = `
       <article class="evidence-card"><span class="network-label">SEPOLIA</span><h3>DemoPositionAsset</h3><code>${short(evidence.asset,12,10)}</code>${explorerLink(sep,"address",evidence.asset,"Inspect asset")}</article>
       <article class="evidence-card featured"><span class="network-label">CREDITCOIN CC3</span><h3>SeedLendLoan</h3><code>${short(evidence.loan,12,10)}</code>${explorerLink(cc,"address",evidence.loan,"Inspect contract")}</article>
     </div>
-    <div class="final-proof"><span class="final-check">✓</span><div><small>FINAL ON-CHAIN STATE</small><strong>Paid · 0 tCTC remaining · ReleaseEligible emitted</strong></div>${explorerLink(cc,"tx",evidence.repayments[2],"Verify final transaction")}</div>
+    <div class="final-proof"><span class="final-check">✓</span><div><small>FINAL ON-CHAIN STATE</small><strong>Paid · 0 tCTC remaining · ReleaseEligible emitted</strong></div>${explorerLink(cc,"tx",evidence.repayments[4],"Verify final transaction")}</div>
   </section>
 
   <section class="boundary shell"><div class="section-kicker">MVP BOUNDARY</div><div class="boundary-grid"><div><h3>Implemented now</h3><p>Loan state on Creditcoin, locked position on Sepolia, Attestcoin proof-gated activation, native tCTC repayment history and release eligibility.</p></div><div><h3>Deliberately next</h3><p>Production underwriting, real investment assets, legal/custody model, default handling and reverse cross-chain release.</p></div></div></section>
