@@ -14,5 +14,5 @@ if (nav && !nav.querySelector('a[href="#product"]')) {
 
 if (primaryCta) {
   primaryCta.href = '#product';
-  primaryCta.textContent = 'See the product vision';
+  primaryCta.textContent = 'See how SeedLend works';
 }
