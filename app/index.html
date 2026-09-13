@@ -10,9 +10,64 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./product-concept.css" />
     <script type="module" src="./main.js"></script>
+    <script type="module" src="./product-layout.js"></script>
   </head>
   <body>
     <div id="app"></div>
+
+    <section class="product-section shell" id="product">
+      <div class="section-heading product-heading">
+        <div>
+          <div class="section-kicker">PRODUCT EXPERIENCE</div>
+          <h2>Make every payment feel like <span>building ownership.</span></h2>
+        </div>
+        <p>SeedLend is designed around progress the user can understand: learn first, invest with directed credit, build ownership over time and create a verifiable record.</p>
+      </div>
+
+      <div class="product-layout">
+        <article class="ownership-card">
+          <div class="concept-head">
+            <span>ILLUSTRATIVE USER VIEW</span>
+            <span class="concept-pill">PRODUCT CONCEPT</span>
+          </div>
+          <div class="position-head">
+            <div><small>FIRST INVESTMENT</small><strong>$100 financed position</strong></div>
+            <span class="position-status">BUILDING</span>
+          </div>
+          <div class="ownership-value">
+            <small>YOUR PROGRESS</small>
+            <strong>You now own <em>40%</em></strong>
+          </div>
+          <div class="progress-track" aria-label="Illustrative ownership progress of 40 percent"><span></span></div>
+          <p>Instead of only watching a debt balance fall, the user sees a positive milestone grow after each scheduled payment.</p>
+          <div class="concept-stats">
+            <div><span>Learning</span><strong>Core course passed</strong></div>
+            <div><span>Next unlock</span><strong>More investment choice</strong></div>
+          </div>
+        </article>
+
+        <div class="product-stack">
+          <article class="feature-card">
+            <span class="feature-index">01</span>
+            <div><h3>Learn before unlocking more choice</h3><p>A free monthly course can combine practical and theoretical assessment. Passing can unlock more autonomy over how the user allocates the investment.</p><span class="feature-tag">FREE MONTHLY COURSE · CONCEPT</span></div>
+          </article>
+          <article class="feature-card">
+            <span class="feature-index">02</span>
+            <div><h3>Build proof of knowledge and repayment</h3><p>Educational credentials and repayment history remain separate signals, but both can become verifiable records the user carries forward.</p><span class="feature-tag">CREDENTIAL + REPAYMENT RECORD · CONCEPT</span></div>
+          </article>
+          <article class="feature-card">
+            <span class="feature-index">03</span>
+            <div><h3>Grow with a university cohort</h3><p>Students spend years together. SeedLend can turn peer influence toward learning, visible progress and accountability around building capital.</p><span class="feature-tag">COMMUNITY FLYWHEEL · HYPOTHESIS</span></div>
+          </article>
+        </div>
+      </div>
+
+      <div class="product-flow" aria-label="SeedLend product progression">
+        <span>Learn</span><b>→</b><span>Pass</span><b>→</b><span>Unlock</span><b>→</b><span>Invest</span><b>→</b><span>Pay</span><b>→</b><span>Own more</span><b>→</b><span>Diversify</span>
+      </div>
+      <p class="concept-note">Product concept: progressive ownership, scheduled repayment incentives, education credentials and cohort features are roadmap hypotheses. They are not represented as implemented functionality in the public testnet MVP below.</p>
+    </section>
   </body>
 </html>
