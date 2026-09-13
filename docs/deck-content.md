@@ -112,10 +112,11 @@ The proof must match the expected vault, loan ID, borrower, asset, principal and
 
 Public MVP demonstration facts:
 
+- loan ID: 2;
 - principal: 100 tCTC;
-- total due: 108 tCTC;
+- total due: 105 tCTC;
 - position: 100 SLDP;
-- repayments: 3 × 36 tCTC;
+- repayments: 5 × 21 tCTC;
 - final remaining balance: 0;
 - final state: `Paid` + `ReleaseEligible`.
 
@@ -153,6 +154,6 @@ Final close:
 
 - Demo is testnet-only and uses no real funds.
 - SLDP is not an RWA and has no promised return.
-- 100 → 108 tCTC is not an 8% APR; no calendar/APR is encoded.
+- The extra 5 tCTC is total demo interest; it is not a 5% APR because no repayment period/APR is encoded.
 - Current payment records are SeedLend repayment history, not a bureau credit score.
 - Course certification, ZK university identity, progressive ownership, default recovery and real asset execution are roadmap concepts, not current MVP functionality.
