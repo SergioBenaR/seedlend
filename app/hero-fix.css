@@ -1,0 +1,66 @@
+.hero{
+  min-height:620px;
+  padding:56px 0 64px;
+  grid-template-columns:minmax(0,1.06fr) minmax(500px,.94fr);
+  gap:48px;
+  align-items:center;
+}
+.hero-copy{max-width:710px}
+.hero .eyebrow{font-size:14px;line-height:1.3;padding:9px 12px;letter-spacing:.12em}
+.hero h1{
+  font-size:clamp(46px,3.7vw,60px);
+  line-height:1.03;
+  letter-spacing:-.045em;
+  margin:22px 0 18px;
+  max-width:710px;
+}
+.hero .lede{font-size:18px;line-height:1.6;max-width:700px}
+.hero .button{font-size:15px}
+.hero-actions{margin-top:26px}
+.hero-metrics{margin-top:30px}
+.hero-metrics div{padding:15px 14px;gap:5px}
+.hero-metrics strong{font-size:20px;line-height:1.15}
+.hero-metrics span{font-size:14px;line-height:1.3;letter-spacing:.04em}
+
+.hero .proof-card{
+  max-width:560px;
+  padding:26px;
+}
+.hero .proof-card-head{font-size:14px;line-height:1.35;padding-bottom:18px}
+.hero .status-pill{font-size:14px;line-height:1.2;padding:7px 10px}
+.hero .chain-row{grid-template-columns:1fr auto 1fr;gap:15px;padding:24px 0}
+.hero .chain-icon{height:44px;min-width:52px;padding:0 11px}
+.hero .sep-icon:after,.hero .cc-icon:after{font-size:14px;letter-spacing:.03em}
+.hero .chain-node small{font-size:14px;line-height:1.25;letter-spacing:.04em;margin-bottom:3px}
+.hero .chain-node b{font-size:16px;line-height:1.25}
+.hero .connector{font-size:14px;line-height:1.2;gap:7px;letter-spacing:.03em}
+.hero .connector:before,.hero .connector:after{font-size:16px}
+.hero .gate-box{padding:15px 16px;gap:12px}
+.hero .gate-check{width:32px;height:32px;font-size:16px}
+.hero .gate-box small{font-size:14px;line-height:1.25;letter-spacing:.04em;margin-bottom:4px}
+.hero .gate-box strong{font-size:15px;line-height:1.35}
+.hero .loan-data div{padding:14px 15px}
+.hero .loan-data dt{font-size:14px;line-height:1.25;letter-spacing:.04em}
+.hero .loan-data dd{font-size:16px;line-height:1.3;margin-top:4px}
+.hero .proof-footer{font-size:14px;line-height:1.4;padding-top:13px}
+
+@media(max-width:1100px){
+  .hero{grid-template-columns:1fr;gap:34px;padding:48px 0 60px;min-height:0}
+  .hero-copy{max-width:780px}
+  .hero .proof-card{max-width:640px;justify-self:start}
+}
+
+@media(max-width:760px){
+  .hero{padding:42px 0 54px;gap:30px}
+  .hero h1{font-size:clamp(40px,11vw,50px);line-height:1.02}
+  .hero .lede{font-size:17px}
+  .hero-metrics{grid-template-columns:1fr 1fr;margin-top:26px}
+  .hero .proof-card{padding:20px}
+  .hero .chain-row{grid-template-columns:1fr;gap:14px;padding:20px 0}
+  .hero .chain-node:last-child{justify-content:flex-start;text-align:left}
+  .hero .connector{justify-self:start}
+  .hero .loan-data{grid-template-columns:1fr}
+  .hero .loan-data div:nth-child(odd){border-right:0}
+  .hero .loan-data div{border-bottom:1px solid var(--line)}
+  .hero .loan-data div:last-child{border-bottom:0}
+}
