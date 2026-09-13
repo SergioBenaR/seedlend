@@ -1,136 +1,192 @@
 # SeedLend
 
-SeedLend is a pre-MVP protocol for directed investment microcredit. Its hackathon version demonstrates how a loan on Creditcoin can be activated only after Attestcoin verifies that the corresponding investment position was created and locked on an external chain.
+**Your first investment starts here.**
 
-## Current objective
+SeedLend is a directed-investment credit product for people who do not yet have enough starting capital, credit history or investment collateral to begin building an investment position.
 
-Build an original, testnet-deployed submission for BUIDL CTC 2026 Fall whose core path is:
+Instead of handing the borrower unrestricted cash, the intended model directs financing into a specific investment position. The hackathon MVP proves the cross-chain trust layer required for that model: a loan on Creditcoin cannot activate until Attestcoin verifies that the expected investment position exists on an external chain.
 
-`loan created → position locked on Sepolia → Attestcoin proof → loan activated on Creditcoin → repayments recorded → release eligibility`
+> **No verified position, no activated loan.**
 
-The prototype does not use real money, does not promise returns and does not claim that its demonstration asset is a legally backed RWA.
+## BUIDL CTC 2026 Fall
 
-## Live demo
+- Track: **DeFi**
+- Submission deadline: **13 September 2026, 23:59 ET**
+- Final submission sheet: [`SUBMISSION.md`](SUBMISSION.md)
+- Hackathon audit: [`docs/hackathon-audit-2026-09-12.md`](docs/hackathon-audit-2026-09-12.md)
+- Final verification: [`docs/final-verification.md`](docs/final-verification.md)
 
-https://seedlend.vercel.app
+## Product thesis
 
-## Public testnet result
+SeedLend is designed around the cold-start problem: the user wants to begin building an investment but does not yet own the capital or collateral normally required to access financing.
 
-The complete vertical slice has been executed on public testnets:
+The broader product aims to help the user build three things together:
+
+1. **investment capital / ownership**;
+2. **practical financial knowledge and verifiable educational credentials**;
+3. **verifiable repayment history / financial reputation**.
+
+Working progression:
+
+`Learn → Simulate → Unlock → Invest → Pay → Own more → Diversify → Build`
+
+The education, credential, progressive-ownership and community layers are product-roadmap concepts. The current smart-contract MVP focuses on the cross-chain financing trust primitive.
+
+## Current public MVP
+
+The complete testnet vertical slice has been executed:
 
 `Creditcoin loan → Sepolia PositionLocked → Attestcoin proof → Creditcoin activation → 3 × 36 tCTC repayments → LoanPaid → ReleaseEligible`
+
+Demo values:
 
 - Principal: 100 tCTC.
 - Total due: 108 tCTC.
 - Demonstration position: 100 SLDP.
 - Final balance: 0 tCTC.
-- Source chain: Ethereum Sepolia, Attestcoin chainKey 1.
+- Source: Ethereum Sepolia, Attestcoin chainKey 1.
 - Destination: Creditcoin CC3 testnet.
-- Evidence: [`docs/testnet-evidence.md`](docs/testnet-evidence.md).
+- Public evidence: [`docs/testnet-evidence.md`](docs/testnet-evidence.md).
+
+SLDP is an intentionally unbacked test ERC-20. It represents no legal claim, production RWA or promised return. The 100 → 108 tCTC demonstration is not an 8% APR because the MVP does not encode a repayment calendar or APR.
 
 ## Why Attestcoin is core
 
-Attestcoin is a state-transition dependency, not an analytics add-on. `SeedLendLoan` refuses to activate unless the proof from Sepolia matches the expected vault, loan ID, borrower, asset, principal and committed `termsHash`.
+Attestcoin is a state-transition dependency rather than an analytics add-on.
 
-That makes the cross-chain proof part of the credit control path itself: **no valid position proof, no active loan**.
+`SeedLendLoan` refuses to activate unless the proven Sepolia transaction contains the expected `PositionLocked` event and matches the configured:
 
-## Implementation status
+- source chain;
+- vault;
+- loan ID;
+- borrower;
+- asset;
+- principal;
+- committed `termsHash`.
 
-- T01–T06: repository scaffold, contracts, Attestcoin worker and guarded deployment preparation complete.
-- T07–T10: native-tCTC repayment flow, payment evidence, completion events and repayment protections complete.
-- T11–T19: public Sepolia + Creditcoin deployment and complete Attestcoin-gated E2E lifecycle complete.
-- T20: judge-facing static product demo implemented in `app/`.
-- T21: production demo deployed and verified on Vercel at https://seedlend.vercel.app.
-- T23–T24: judge-facing pitch narrative and technical evidence documentation prepared.
+The proof query is replay-protected. Failed source transactions, mismatched position data and invalid/unverified proofs are rejected.
 
-## Demo interface
+## Architecture
 
-The web demo is deliberately product-first rather than a generic hackathon landing page. It exposes the real completed lifecycle and links directly to the public transactions and contracts used in the demo.
+```text
+Capital provider / execution layer
+              │
+              ▼
+Ethereum Sepolia
+SeedLendVault + external position
+              │
+              │ PositionLocked transaction
+              ▼
+Attestcoin proof workflow
+              │
+              ▼
+Creditcoin CC3
+SeedLendLoan
+PendingPosition → Active → Paid → ReleaseEligible
+```
 
-Live: https://seedlend.vercel.app
+Creditcoin stores the canonical loan lifecycle. The financed position may live elsewhere. Attestcoin provides the proof that connects the two states.
 
-Build it locally with:
+## Public demo
+
+Final URL:
+
+https://seedlend.vercel.app
+
+**Pre-submission note:** the production alias currently serves an earlier build and must be refreshed to the latest product-first interface before the final hackathon submission. The repository version in `app/` is the current source of truth.
+
+Build locally with:
 
 ```bash
 pnpm --filter @seedlend/app build
 ```
 
-The app is static and contains no private keys or signing material. Vercel deployment uses `app/` as the project root.
+The app is static and contains no private keys or signing material.
+
+## Verification
+
+The repository now includes GitHub Actions verification at `.github/workflows/verify.yml`.
+
+The verification workflow runs:
+
+- repository Node tests;
+- Attestcoin worker tests;
+- TypeScript typecheck;
+- judge-facing app build;
+- Creditcoin Foundry tests;
+- Sepolia Foundry tests.
+
+The final pre-submission verification state is recorded in [`docs/final-verification.md`](docs/final-verification.md).
+
+Local checks:
+
+```bash
+pnpm install --frozen-lockfile
+pnpm check
+pnpm --filter @seedlend/app build
+cd contracts/creditcoin && forge test
+cd ../../contracts/sepolia && forge test
+```
 
 ## MVP boundary
 
-Included:
+### Implemented
 
 - `SeedLendLoan` on Creditcoin CC3 testnet;
-- `SeedLendVault` and the unbacked SLDP demo asset on Ethereum Sepolia;
+- `SeedLendVault` and unbacked SLDP demo asset on Ethereum Sepolia;
 - functional Attestcoin proof-gated activation;
-- native tCTC repayment history inside SeedLend;
+- exact source-position matching and replay protection;
+- native tCTC repayment records;
 - `LoanPaid` and `ReleaseEligible` completion evidence;
-- reproducible E2E scripts, public transaction evidence and a judge-facing web demo.
+- reproducible deployment/E2E scripts;
+- public transaction evidence;
+- judge-facing product/demo interface.
 
-Excluded until separately designed and validated:
+### Roadmap / not implemented in the hackathon MVP
 
-- automatic Creditcoin-to-Sepolia asset release;
-- defaults, liquidation and secondary-market economics;
-- production credit scoring or external credit-bureau integration;
-- real users, real funds, KYC/AML and legal RWA rights;
-- DCA, social incentives and a production financial model.
+- production asset purchase/settlement;
+- real investment assets or yield products;
+- automatic Creditcoin-to-source-chain asset release;
+- repayment due dates, grace periods or late penalties;
+- default liquidation or secondary-market mechanics;
+- progressive legal/economic ownership per repayment;
+- production underwriting / formal credit scoring;
+- KYC/AML, custody and jurisdictional design;
+- educational course/certificate issuance;
+- university/ZK identity integration.
+
+See [`docs/product-strategy.md`](docs/product-strategy.md) for the broader product thesis and [`docs/customer-discovery.md`](docs/customer-discovery.md) for the first customer-discovery round.
 
 ## Repository layout
 
 ```text
-contracts/creditcoin/  SeedLendLoan and its tests
-contracts/sepolia/     SeedLendVault and its tests
+contracts/creditcoin/  SeedLendLoan, Attestcoin verifier and tests
+contracts/sepolia/     SeedLendVault, demo asset and tests
 worker/                Attestcoin proof workflow
-app/                   Public testnet demo interface
-scripts/               Checks, deployment and E2E automation
-tests/                 Repository-level smoke tests
-docs/                  Architecture, decisions, pitch and public evidence
+app/                   Judge-facing product + testnet evidence interface
+scripts/               Deployment and E2E automation
+tests/                 Repository-level checks
+docs/                  Product, architecture, research, pitch and evidence
 ```
-
-## Local verification
-
-Requirements:
-
-- Node.js 20 or newer;
-- pnpm 11;
-- Foundry `v1.2.3`;
-- Git.
-
-Run repository checks:
-
-```bash
-pnpm check
-```
-
-Run each Solidity suite:
-
-```bash
-cd contracts/creditcoin && forge test
-cd contracts/sepolia && forge test
-```
-
-Verify the public Creditcoin and Attestcoin environment:
-
-```bash
-pnpm verify:networks
-```
-
-Never commit `.env`, private keys or `.deployments/` local checkpoints.
 
 ## Key documentation
 
-- [`docs/testnet-evidence.md`](docs/testnet-evidence.md) — public contracts and transactions from the completed lifecycle.
-- [`docs/pitch.md`](docs/pitch.md) — judge-facing product and Attestcoin narrative.
-- [`docs/contract-model.md`](docs/contract-model.md) — contract model.
-- [`docs/decision-log.md`](docs/decision-log.md) — MVP decisions and boundaries.
+- [`SUBMISSION.md`](SUBMISSION.md) — final submission control sheet.
+- [`docs/product-strategy.md`](docs/product-strategy.md) — durable product source of truth.
+- [`docs/customer-discovery.md`](docs/customer-discovery.md) — interview design, evidence and limits.
+- [`docs/pitch.md`](docs/pitch.md) — judge-facing narrative.
+- [`docs/video-script.md`](docs/video-script.md) — timed video script.
+- [`docs/demo-plan.md`](docs/demo-plan.md) — demo recording sequence.
+- [`docs/testnet-evidence.md`](docs/testnet-evidence.md) — public contracts and transactions.
+- [`docs/final-verification.md`](docs/final-verification.md) — final CI verification status.
 
 ## Official references
 
-- [BUIDL CTC 2026 Fall requirements](https://dorahacks.io/hackathon/buidl-ctc-2026-fall/detail)
-- [Attestcoin Protocol overview](https://creditcoin.org/USC)
+- [BUIDL CTC 2026 Fall](https://buidl.creditcoin.org/)
+- [BUIDL CTC on DoraHacks](https://dorahacks.io/hackathon/buidl-ctc-2026-fall/detail)
+- [Attestcoin Protocol](https://creditcoin.org/USC)
 - [Creditcoin guided tutorials](https://docs.creditcoin.org/creditcoin-usc/guided-tutorials)
-- [Official USC examples](https://github.com/gluwa/usc-testnet-bridge-examples)
+- [Official Attestcoin examples](https://github.com/gluwa/attestcoin-protocol-examples)
 
 ## License
 
