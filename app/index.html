@@ -12,6 +12,120 @@
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./product-concept.css" />
     <link rel="stylesheet" href="./hero-fix.css" />
+    <style>
+      /* Section 2 only: problem + customer discovery */
+      .problem-section .section-kicker,
+      .problem-section .stat-source,
+      .problem-section .stat-card a,
+      .problem-section .discovery-intro p,
+      .problem-section .discovery-grid span,
+      .problem-section .discovery-insight span {
+        font-size:14px;
+      }
+
+      .problem-heading {
+        grid-template-columns:1fr;
+        gap:16px;
+        align-items:start;
+        margin-bottom:34px;
+      }
+      .problem-heading h2 {
+        max-width:980px;
+      }
+      .problem-heading > p {
+        max-width:760px;
+        font-size:16px;
+        line-height:1.65;
+        margin:0;
+      }
+
+      .latam-evidence {
+        gap:18px;
+      }
+      .stat-card {
+        min-height:230px;
+        padding:26px;
+      }
+      .stat-card strong {
+        font-size:44px;
+        margin:22px 0 12px;
+      }
+      .stat-card p {
+        font-size:16px;
+        line-height:1.6;
+      }
+      .stat-card a {
+        line-height:1.4;
+      }
+
+      .discovery-block {
+        margin-top:20px;
+        padding:26px;
+      }
+      .discovery-intro {
+        grid-template-columns:1fr;
+        gap:10px;
+        align-items:start;
+        padding-bottom:22px;
+      }
+      .discovery-intro h3 {
+        font-size:26px;
+        line-height:1.25;
+      }
+      .discovery-intro p {
+        max-width:760px;
+        line-height:1.6;
+      }
+
+      .discovery-grid {
+        margin-top:20px;
+      }
+      .discovery-grid article {
+        min-height:132px;
+        padding:22px;
+        gap:12px;
+      }
+      .discovery-grid strong {
+        font-size:30px;
+      }
+      .discovery-grid span {
+        line-height:1.5;
+      }
+
+      .discovery-insight {
+        margin-top:16px;
+        padding:0;
+        border:0;
+        background:none;
+        grid-template-columns:minmax(260px,.7fr) minmax(0,1.3fr);
+        gap:14px;
+        align-items:stretch;
+      }
+      .discovery-insight > div,
+      .discovery-insight > p {
+        border:1px solid rgba(184,255,103,.23);
+        border-radius:12px;
+        background:rgba(184,255,103,.042);
+        padding:20px 22px;
+      }
+      .discovery-insight > div {
+        align-content:center;
+      }
+      .discovery-insight strong {
+        font-size:31px;
+      }
+      .discovery-insight p {
+        display:flex;
+        align-items:center;
+        margin:0;
+        font-size:18px;
+        line-height:1.45;
+      }
+
+      @media(max-width:900px){
+        .discovery-insight{grid-template-columns:1fr}
+      }
+    </style>
     <script type="module" src="./main.js"></script>
     <script type="module" src="./product-layout.js"></script>
   </head>
