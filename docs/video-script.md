@@ -1,8 +1,10 @@
-# SeedLend — working hackathon video script
+# SeedLend — hackathon video script (long-form source)
 
-_Last consolidated: 13 September 2026._
+_Last consolidated: 14 September 2026._
 
-Target final duration: **3:45–3:55**. SeedLend must appear from the first second. Product story first; blockchain appears only when the trust problem has been established. The technical demo should receive roughly **65–75 seconds**.
+The structure below is the long-form source plan that targeted **3:45–3:55**. During the final submission workflow, the recording/edit was intentionally shortened to prioritize clarity, concrete product explanation and the working proof path under severe time pressure. Do **not** treat four minutes as a product requirement or as the exact duration of the final cut. The final public video URL was not recorded in the repository before the deadline elapsed.
+
+SeedLend must appear from the first second. Product story first; blockchain appears only when the trust problem has been established. In a long-form cut, the technical demo should receive roughly **65–75 seconds**.
 
 ## 0:00–0:18 — Opening
 
