@@ -125,6 +125,32 @@ The extra 5 tCTC in the public demo is total demo interest. It must not be descr
 
 SeedLend is directed investment credit for young people who lack starting capital, credit history or collateral. Instead of handing the borrower unrestricted cash, financing is directed into an investment position. In the public MVP, the canonical loan lifecycle runs on Creditcoin CC3, the financed demonstration position is locked on Ethereum Sepolia, and Attestcoin cryptographically proves that exact external position before the loan can activate. We completed the full testnet lifecycle from a 100 tCTC loan and 100 SLDP position through Attestcoin-gated activation, five repayments of 21 tCTC and the final `Paid` / `ReleaseEligible` state. The broader product vision combines directed investment access with free recurring financial education, verifiable credentials, visible ownership progress, university cohorts and verifiable repayment history — helping users begin building capital, knowledge and financial reputation before they already have traditional collateral.
 
+## DoraHacks field copy prepared
+
+### Vision
+
+SeedLend helps young people start building their first investment position before they have the full capital, using directed credit, financial education and a verifiable repayment record.
+
+### Team information
+
+SeedLend is currently being built by a solo founder for BUIDL CTC 2026 Fall. Product strategy, customer discovery, smart contracts, Attestcoin integration, testnet deployment, frontend, documentation and demo preparation have all been developed within this hackathon project.
+
+### Project description
+
+Use the **Final submission description** above.
+
+### USC Integration Summary
+
+SeedLend uses Attestcoin as a state-transition dependency, not as an analytics layer. A loan on Creditcoin remains pending until Attestcoin proves the expected `PositionLocked` transaction on Ethereum Sepolia. `SeedLendLoan` then verifies the source chain, authorized vault, loan ID, borrower, asset, principal and committed `termsHash`. If any value does not match, the loan does not activate. This creates the core rule of the MVP: **no verified position, no activated loan.**
+
+### Links prepared for the form
+
+- GitHub: https://github.com/SergioBenaR/seedlend
+- Project website: https://seedlend.vercel.app
+- Deck PDF: https://raw.githubusercontent.com/SergioBenaR/seedlend/main/SeedLend_BUIDL_CTC_2026_Deck.pdf
+- Demo video: `PENDING` — confirmed public URL not recorded.
+- Social profile URL: not recorded in this repository; do not invent one.
+
 ## Closeout checklist
 
 - [x] Original SeedLend contracts and worker implemented.
