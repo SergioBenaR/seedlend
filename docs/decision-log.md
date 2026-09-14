@@ -94,8 +94,8 @@ The next planned comparison cohort is a public-university workshop on **14 Septe
 - The final public MVP remains Loan #2: 100 tCTC principal, 105 tCTC total due, 100 SLDP position, five repayments of 21 tCTC, zero remaining, `Paid` + `ReleaseEligible`.
 - The final seven-slide PDF was uploaded to the repository root as `SeedLend_BUIDL_CTC_2026_Deck.pdf` and has a public raw GitHub URL.
 - GitHub Actions run `34804414537` passed on the deck-upload commit `3d053979ef94e8ac7e456c6e5b055686ad008d6e`.
-- The DoraHacks deadline elapsed during the final submission flow. Repository documentation must not claim that DoraHacks accepted a final submission unless that status is independently confirmed later.
-- A final public demo-video URL was not recorded in the repository before the deadline elapsed; add it later only if/when a confirmed public URL is available.
+- The SeedLend DoraHacks submission was successfully sent before the deadline.
+- A final public demo-video URL is not recorded in the repository; add it later only if/when a confirmed public URL is available.
 - SeedLend remains active. The end of this hackathon window is a milestone, not a decision to archive or stop the project.
 - Future work can continue through product development, validation, grants, hackathons, partnerships and other opportunities, without changing the documented MVP boundary retroactively.
 - **Deck wording correction for future reuse:** slide 3 of the rushed final PDF says that “15 out of 16 people would save half their money instead of spending it.” The interview evidence does **not** support “half.” The canonical finding is: **15/16 would save at least part of a concrete extra USD 10.** `docs/customer-discovery.md` and `docs/deck-content.md` remain the source of truth for that claim.
