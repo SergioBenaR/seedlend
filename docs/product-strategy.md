@@ -1,6 +1,6 @@
 # SeedLend product strategy
 
-_Last consolidated: 12 September 2026._
+_Last consolidated: 14 September 2026._
 
 This document is the durable source of truth for the broader SeedLend product thesis. It intentionally separates what exists in the hackathon MVP from product hypotheses, future mechanisms and business-model ideas so that future pitch/demo work does not depend on reconstructing prior conversations.
 
@@ -311,7 +311,7 @@ The demo does **not** currently implement:
 - KYC/AML or legal custody;
 - university identity/ZK integration;
 - educational credential issuance;
-- progressive ownership UI/mechanics;
+- progressive legal/economic ownership mechanics;
 - production APR/economic model.
 
 These boundaries must be stated honestly while showing that the MVP proves the hardest trust primitive: the loan cannot activate unless the expected external investment position is cryptographically verified.
@@ -328,7 +328,7 @@ These boundaries must be stated honestly while showing that the MVP proves the h
 8. Only then introduce Creditcoin + Attestcoin as the necessary trust infrastructure.
 9. Give the live/product demo enough time. The demo should tell the user's story, not merely show transaction hashes.
 10. Distinguish clearly between what is implemented and what is roadmap.
-11. Do not call 100 tCTC → 108 tCTC an 8% APR; the demo has no on-chain calendar/APR.
+11. Do not call 100 tCTC → 105 tCTC a 5% APR; the demo has no on-chain calendar/APR.
 12. Do not imply SLDP is a real RWA or has legal backing/yield.
 13. Do not imply partnerships with investment protocols/providers that do not exist.
 14. Do not claim current payment data is a formal credit score or bureau record.
@@ -364,3 +364,9 @@ Keep in-person group observations separate from anonymous online survey results 
 - credential standard and identity/privacy architecture;
 - whether community/network effects materially improve acquisition or repayment;
 - final revenue mix.
+
+## Hackathon closeout note — 14 September 2026
+
+The BUIDL CTC 2026 Fall window produced a working public trust-layer MVP, public testnet evidence, a deployed product/demo site and a seven-slide deck. The final demo state is Loan #2 with 100 tCTC principal, 105 tCTC total due, 100 SLDP locked, five repayments of 21 tCTC, zero remaining and `Paid` + `ReleaseEligible`.
+
+The hackathon deadline is a milestone, not an end-state for SeedLend. Product validation and development should continue from the thesis and boundaries recorded in this file rather than treating roadmap concepts as already implemented.
