@@ -1,8 +1,8 @@
 # SeedLend — BUIDL CTC 2026 Fall submission sheet
 
-_Last consolidated: 13 September 2026._
+_Last consolidated: 14 September 2026._
 
-This file is the single source of truth for the final hackathon submission. Replace every `PENDING` field before submitting.
+This file records the final hackathon build and submission-preparation state. The DoraHacks deadline elapsed during the final submission flow; whether a final submission was accepted by DoraHacks is not recorded in this repository and must not be inferred.
 
 ## Project
 
@@ -112,20 +112,20 @@ Not implemented today:
 
 The extra 5 tCTC in the public demo is total demo interest. It must not be described as a 5% APR because the contract does not encode a repayment calendar/APR.
 
-## Final submission assets
+## Final hackathon assets
 
 - **Track:** DeFi
 - **Repository URL:** https://github.com/SergioBenaR/seedlend
 - **Live product URL:** https://seedlend.vercel.app
-- **Deck / whitepaper PDF:** public hosting URL `PENDING`
+- **Deck / whitepaper PDF:** https://raw.githubusercontent.com/SergioBenaR/seedlend/main/SeedLend_BUIDL_CTC_2026_Deck.pdf
 - **Deck source of truth:** `docs/deck-content.md`
-- **Demo video URL:** `PENDING`
+- **Demo video URL:** `PENDING` — final public URL was not recorded in this repository before the deadline elapsed.
 
 ## Final submission description
 
 SeedLend is directed investment credit for young people who lack starting capital, credit history or collateral. Instead of handing the borrower unrestricted cash, financing is directed into an investment position. In the public MVP, the canonical loan lifecycle runs on Creditcoin CC3, the financed demonstration position is locked on Ethereum Sepolia, and Attestcoin cryptographically proves that exact external position before the loan can activate. We completed the full testnet lifecycle from a 100 tCTC loan and 100 SLDP position through Attestcoin-gated activation, five repayments of 21 tCTC and the final `Paid` / `ReleaseEligible` state. The broader product vision combines directed investment access with free recurring financial education, verifiable credentials, visible ownership progress, university cohorts and verifiable repayment history — helping users begin building capital, knowledge and financial reputation before they already have traditional collateral.
 
-## Pre-submit checklist
+## Closeout checklist
 
 - [x] Original SeedLend contracts and worker implemented.
 - [x] Creditcoin CC3 testnet deployment completed.
@@ -137,8 +137,12 @@ SeedLend is directed investment credit for young people who lack starting capita
 - [x] Product strategy, customer discovery, pitch and demo plan preserved in repository.
 - [x] Seven-slide hackathon deck content finalized and preserved in repository.
 - [x] Latest product-first web build deployed to the final production URL.
-- [ ] Final public smoke test completed.
-- [x] Repository made accessible to hackathon judges.
-- [ ] Deck/whitepaper PDF hosted at a public URL.
-- [ ] Demo video completed and hosted.
-- [ ] Final DoraHacks form completed and checked for claim consistency.
+- [x] Final public site/content audit completed.
+- [x] Repository made accessible publicly.
+- [x] Deck/whitepaper PDF hosted at a public URL.
+- [ ] Final demo video public URL recorded in the repository.
+- [ ] Final DoraHacks submission acceptance/status confirmed and recorded.
+
+## Continuity after the hackathon window
+
+SeedLend remains an active project. The end of the BUIDL CTC submission window is a hackathon milestone, not a project shutdown. Future development, validation, grants, hackathons, partnerships and product work can continue from the public MVP and evidence recorded here.
