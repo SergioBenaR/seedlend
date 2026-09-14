@@ -1,20 +1,22 @@
 # SeedLend final verification
 
-_Last verified: 13 September 2026._
+_Last verified: 14 September 2026._
 
-This file records the final pre-submission verification state for the BUIDL CTC 2026 Fall hackathon.
+This file records the final verified technical state and hackathon closeout state for BUIDL CTC 2026 Fall.
 
 ## CI verification
 
 GitHub Actions workflow: `Verify SeedLend`
 
-Run: https://github.com/SergioBenaR/seedlend/actions/runs/34781060823
+Latest full run checked before the closeout documentation updates:
 
-Commit verified: `0d1ad9b583cdeda00e4a9b5fa5c0ecdcd78e6a1d`
+- Run: https://github.com/SergioBenaR/seedlend/actions/runs/34804414537
+- Commit verified: `3d053979ef94e8ac7e456c6e5b055686ad008d6e`
+- Result: **PASS**
 
-Result: **PASS**
+That commit added only the final deck PDF on top of the already-audited technical/documentation state. The workflow completed successfully after the upload.
 
-The following steps completed successfully in GitHub Actions:
+The verification workflow covers:
 
 - dependency installation with the locked pnpm graph;
 - repository Node tests;
@@ -25,12 +27,15 @@ The following steps completed successfully in GitHub Actions:
 - Creditcoin Solidity test suite;
 - Sepolia Solidity test suite.
 
+Subsequent 14 September closeout commits update documentation/status only; they do not change contracts, worker logic, app code or testnet evidence.
+
 ## Public deployment
 
 - Repository: https://github.com/SergioBenaR/seedlend
 - Repository visibility: public.
 - Production demo: https://seedlend.vercel.app
 - Production deployment state: ready.
+- Final hackathon deck PDF: https://raw.githubusercontent.com/SergioBenaR/seedlend/main/SeedLend_BUIDL_CTC_2026_Deck.pdf
 
 ## Current public testnet evidence
 
@@ -69,9 +74,21 @@ SLDP remains an intentionally unbacked demonstration token with no legal claim o
 
 The extra 5 tCTC in the current demo is total demo interest. It is not a 5% APR because the contract does not encode a repayment period or APR.
 
-## Remaining submission items
+## Hackathon closeout status
 
-1. Final public smoke test.
-2. Deck/whitepaper PDF hosted at a public URL.
-3. Final demo video recorded and hosted.
-4. Final DoraHacks fields and links completed and checked for consistency.
+Completed and preserved:
+
+1. Public repository and passing verification workflow.
+2. Public production demo.
+3. Complete public testnet lifecycle and transaction evidence.
+4. Final seven-slide deck PDF hosted publicly.
+5. Submission copy and technical USC/Attestcoin explanation preserved in `SUBMISSION.md` and the repository documentation.
+
+Not confirmed in the repository:
+
+1. Final public demo-video URL.
+2. Whether DoraHacks accepted a final submission before/at the deadline.
+
+The DoraHacks deadline elapsed during the final submission flow. No repository document should claim that a final submission was accepted unless that status is independently confirmed later.
+
+SeedLend remains active after the hackathon window; this closeout records the milestone rather than ending the project.
