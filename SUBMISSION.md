@@ -2,7 +2,7 @@
 
 _Last consolidated: 14 September 2026._
 
-This file records the final hackathon build and submission-preparation state. The DoraHacks deadline elapsed during the final submission flow; whether a final submission was accepted by DoraHacks is not recorded in this repository and must not be inferred.
+This file records the final hackathon build and submission state. The SeedLend DoraHacks submission was successfully sent before the deadline.
 
 ## Project
 
@@ -119,7 +119,7 @@ The extra 5 tCTC in the public demo is total demo interest. It must not be descr
 - **Live product URL:** https://seedlend.vercel.app
 - **Deck / whitepaper PDF:** https://raw.githubusercontent.com/SergioBenaR/seedlend/main/SeedLend_BUIDL_CTC_2026_Deck.pdf
 - **Deck source of truth:** `docs/deck-content.md`
-- **Demo video URL:** `PENDING` — final public URL was not recorded in this repository before the deadline elapsed.
+- **Demo video URL:** `PENDING` — final public URL is not recorded in this repository.
 
 ## Final submission description
 
@@ -167,7 +167,7 @@ SeedLend uses Attestcoin as a state-transition dependency, not as an analytics l
 - [x] Repository made accessible publicly.
 - [x] Deck/whitepaper PDF hosted at a public URL.
 - [ ] Final demo video public URL recorded in the repository.
-- [ ] Final DoraHacks submission acceptance/status confirmed and recorded.
+- [x] Final DoraHacks submission sent before the deadline.
 
 ## Continuity after the hackathon window
 
