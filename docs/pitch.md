@@ -1,6 +1,6 @@
 # SeedLend pitch narrative
 
-_Last consolidated: 12 September 2026._
+_Last consolidated: 14 September 2026._
 
 This file is the current judge-facing narrative. For the full product thesis and research context, read `docs/product-strategy.md` and `docs/customer-discovery.md` before editing this pitch.
 
@@ -159,17 +159,18 @@ The demonstrated lifecycle is:
 
 `loan created → 100 SLDP locked on Sepolia → Attestcoin proof → loan activated on Creditcoin → repayments → LoanPaid → ReleaseEligible`
 
-Demo facts:
+Final public demo facts:
 
+- loan ID: 2;
 - principal: 100 tCTC;
-- total due: 108 tCTC;
+- total due: 105 tCTC;
 - demonstration position: 100 SLDP;
-- example repayments: 3 × 36 tCTC;
+- repayments: 5 × 21 tCTC;
 - source: Ethereum Sepolia, Attestcoin chainKey 1;
 - destination: Creditcoin CC3 testnet;
-- final state: 3 payment records, zero remaining, `LoanPaid` + `ReleaseEligible`.
+- final state: 5 payment records, zero remaining, `LoanPaid` + `ReleaseEligible`.
 
-The contract does not impose an APR, monthly due dates or mandatory 36-tCTC installments. Never describe 100 → 108 as an 8% APR.
+The contract does not impose an APR, monthly due dates or mandatory 21-tCTC installments. Never describe 100 → 105 as a 5% APR.
 
 SLDP is a fixed-supply **unbacked test token**. It is not a production RWA, legal claim or promised-yield asset.
 
