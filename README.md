@@ -77,7 +77,8 @@ For more detail, see [`docs/architecture.md`](docs/architecture.md).
 
 ## Public demo
 
-https://seedlend.vercel.app
+- Live product: https://seedlend.vercel.app
+- BUIDL CTC 2026 Fall deck: [`SeedLend_BUIDL_CTC_2026_Deck.pdf`](SeedLend_BUIDL_CTC_2026_Deck.pdf)
 
 Build locally with:
 
