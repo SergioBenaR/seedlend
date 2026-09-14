@@ -83,12 +83,12 @@ Completed and preserved:
 3. Complete public testnet lifecycle and transaction evidence.
 4. Final seven-slide deck PDF hosted publicly.
 5. Submission copy and technical USC/Attestcoin explanation preserved in `SUBMISSION.md` and the repository documentation.
+6. SeedLend DoraHacks submission sent before the deadline.
 
 Not confirmed in the repository:
 
 1. Final public demo-video URL.
-2. Whether DoraHacks accepted a final submission before/at the deadline.
 
-The DoraHacks deadline elapsed during the final submission flow. No repository document should claim that a final submission was accepted unless that status is independently confirmed later.
+The SeedLend DoraHacks submission was sent before the deadline.
 
 SeedLend remains active after the hackathon window; this closeout records the milestone rather than ending the project.
