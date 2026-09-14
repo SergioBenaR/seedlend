@@ -33,8 +33,8 @@ Attestcoin activation now requires:
 The internal activation hook is exposed only by a test harness. Production callers cannot activate
 loans through that hook.
 
-The demo terms are 100 tCTC principal, 108 tCTC total due and three illustrative payments of
-36 tCTC. The contract does not impose payment dates or require each payment to equal 36 tCTC.
+The final public demo uses 100 tCTC principal, 105 tCTC total due and five demonstration payments of
+21 tCTC. The contract does not impose payment dates or require each payment to equal 21 tCTC.
 
 ## `SeedLendVault` — Sepolia
 
